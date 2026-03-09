@@ -1,50 +1,37 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const NavigationLayout = () => {
+const NavigationLayout = ({ children }) => {
     return (
-        <div className="min-h-screen flex flex-col font-sans">
+        <div className="min-h-screen bg-gray-50 flex flex-col">
             {/* Prototype Viewer Navigation - Floating at the top */}
             <div className="bg-gray-900 text-white text-sm py-2 px-4 shadow-md sticky top-0 z-50 flex items-center justify-between">
                 <div className="font-semibold text-gray-300">
-                    <NavLink to="/">Insights Value Hub</NavLink>
+                    <NavLink to="/">Insights Value Hub prototypes</NavLink>
                 </div>
                 <nav className="flex space-x-4">
                     <NavLink
-                        to="/concept1"
-                        className={({ isActive }) => isActive ? "text-brand-yellow font-bold" : "hover:text-brand-yellow transition-colors"}
+                        to="/template1"
+                        className={({ isActive }) =>
+                            `px-3 py-1 rounded transition-colors ${isActive ? 'bg-brand-green text-white' : 'hover:bg-gray-700'}`
+                        }
                     >
-                        1. Minimalist
+                        Template 1 (Nutrihub Style)
                     </NavLink>
                     <NavLink
-                        to="/concept2"
-                        className={({ isActive }) => isActive ? "text-brand-yellow font-bold" : "hover:text-brand-yellow transition-colors"}
+                        to="/template2"
+                        className={({ isActive }) =>
+                            `px-3 py-1 rounded transition-colors ${isActive ? 'bg-brand-yellow text-gray-900' : 'hover:bg-gray-700'}`
+                        }
                     >
-                        2. Vibrant
-                    </NavLink>
-                    <NavLink
-                        to="/concept3"
-                        className={({ isActive }) => isActive ? "text-brand-yellow font-bold" : "hover:text-brand-yellow transition-colors"}
-                    >
-                        3. Institutional
-                    </NavLink>
-                    <NavLink
-                        to="/concept4"
-                        className={({ isActive }) => isActive ? "text-brand-yellow font-bold" : "hover:text-brand-yellow transition-colors"}
-                    >
-                        4. Innovation
-                    </NavLink>
-                    <NavLink
-                        to="/concept5"
-                        className={({ isActive }) => isActive ? "text-brand-yellow font-bold" : "hover:text-brand-yellow transition-colors"}
-                    >
-                        5. Storytelling
+                        Template 2 (Vibrant Style)
                     </NavLink>
                 </nav>
             </div>
 
-            {/* Render the selected concept below */}
-            <div className="flex-grow">
-                <Outlet />
+            {/* Main Content Area (where the specific concept renders) */}
+            <div className="flex-grow relative">
+                {children}
             </div>
         </div>
     );
