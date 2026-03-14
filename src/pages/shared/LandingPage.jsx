@@ -5,71 +5,77 @@ import { images } from '../../data/imageMap';
 
 const LandingPage = ({ theme }) => {
     const isVibrant = theme === 'vibrant';
+    const basePath = isVibrant ? '/template2' : '/template1';
 
-    // Theme-specific styling tokens
     const styles = {
-        heroBg: isVibrant ? 'bg-brand-dark' : 'bg-brand-dark',
-        heroText: isVibrant ? 'text-brand-yellow' : 'text-white',
-        heroSubText: isVibrant ? 'text-gray-300' : 'text-gray-200',
-        heroButton: isVibrant
-            ? 'bg-brand-yellow text-brand-dark hover:bg-brand-green hover:text-white'
-            : 'bg-brand-green text-white hover:bg-white hover:text-brand-dark',
-        sectionBg: isVibrant ? 'bg-[#fdfaf2]' : 'bg-gray-50',
-        cardBg: isVibrant ? 'bg-white border-2 border-brand-yellow/10 hover:border-brand-yellow/30' : 'bg-white shadow-sm border border-gray-100 hover:shadow-md',
-        headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',
-        textClass: isVibrant ? 'text-lg font-medium text-gray-700' : 'text-lg font-light text-gray-600',
         accentColor: isVibrant ? 'text-brand-yellow' : 'text-brand-green',
+        headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',
+        cardBg: isVibrant ? 'bg-white border-2 border-brand-yellow/10 hover:border-brand-yellow/40 hover:shadow-2xl' : 'bg-white shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand-green/30',
     };
 
     const heroImage = isVibrant ? images.hero.vibrant : images.hero.nutrihub;
-    const basePath = isVibrant ? '/template2' : '/template1';
+    const milletImages = [images.millets.barnyard, images.millets.finger, images.millets.foxtail, images.millets.jowar, images.millets.pearl, images.millets.proso];
 
     return (
         <div className="w-full">
-            {/* 1. HERO SECTION */}
-            <section className={`relative w-full ${isVibrant ? 'min-h-[85vh]' : 'min-h-[75vh]'} flex items-center overflow-hidden`}>
+            {/* 1. HERO SECTION - Full bleed */}
+            <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img
-                        src={heroImage}
-                        alt="Hero background"
-                        className={`w-full h-full object-cover ${isVibrant ? 'opacity-30 mix-blend-luminosity' : 'opacity-40'}`}
-                    />
-                    <div className={`absolute inset-0 ${isVibrant ? 'bg-gradient-to-br from-brand-dark via-brand-dark/90 to-brand-green/80' : 'bg-gradient-to-r from-brand-dark/95 to-brand-dark/70'}`}></div>
+                    <img src={heroImage} alt="Hero background" className="w-full h-full object-cover" />
+                    <div className={`absolute inset-0 ${isVibrant ? 'bg-gradient-to-br from-brand-dark/95 via-brand-dark/80 to-brand-green/60' : 'bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent'}`}></div>
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-                    <div className={`max-w-4xl ${isVibrant ? 'mx-auto text-center' : ''}`}>
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+                    <div className={`max-w-3xl ${isVibrant ? 'mx-auto text-center' : ''}`}>
                         {isVibrant && (
-                            <div className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/20 border border-brand-yellow/30 text-brand-yellow font-bold text-sm tracking-widest uppercase mb-8 backdrop-blur-sm animate-pulse">
-                                Innovation &bull; Governance &bull; Strategy
+                            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-brand-yellow/20 border border-brand-yellow/30 text-brand-yellow font-bold text-sm tracking-widest uppercase mb-8 backdrop-blur-sm">
+                                <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
+                                Innovation • Governance • Strategy
                             </div>
                         )}
-                        <h1 className={`text-4xl md:text-5xl lg:text-6xl ${styles.headingClass} ${styles.heroText} mb-6 leading-tight`}>
+                        <h1 className={`text-5xl md:text-6xl lg:text-7xl ${styles.headingClass} text-white mb-8 leading-[1.1]`}>
                             {siteContent.home.hero.headline}
                         </h1>
-                        <p className={`text-xl md:text-2xl ${styles.heroSubText} mb-10 max-w-3xl ${isVibrant ? 'mx-auto font-medium' : 'font-light'}`}>
+                        <p className={`text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl ${isVibrant ? 'mx-auto font-medium' : 'font-light'} leading-relaxed`}>
                             {siteContent.home.hero.subline}
                         </p>
                         <div className={`flex flex-col sm:flex-row gap-4 ${isVibrant ? 'justify-center' : ''}`}>
                             <Link
                                 to={`${basePath}/about`}
-                                className={`inline-flex justify-center items-center px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 ${styles.heroButton}`}
+                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${isVibrant ? 'bg-brand-yellow text-brand-dark hover:bg-white' : 'bg-white text-brand-dark hover:bg-brand-green hover:text-white'}`}
                             >
                                 Discover Our Platform
                             </Link>
                             <Link
                                 to={`${basePath}/services/value-chain`}
-                                className={`inline-flex justify-center items-center px-8 py-4 rounded-full font-bold text-lg border-2 transition-all duration-300 transform hover:-translate-y-1 ${isVibrant ? 'border-brand-yellow/50 text-brand-yellow hover:bg-brand-yellow hover:text-brand-dark' : 'border-white/30 text-white hover:bg-white hover:text-brand-dark'}`}
+                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg border-2 transition-all duration-300 transform hover:-translate-y-1 ${isVibrant ? 'border-brand-yellow/50 text-brand-yellow hover:bg-brand-yellow hover:text-brand-dark' : 'border-white/40 text-white hover:bg-white hover:text-brand-dark'}`}
                             >
                                 Explore Services
                             </Link>
                         </div>
                     </div>
                 </div>
+
+                {/* Scroll indicator */}
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
+                    <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+                </div>
             </section>
 
-            {/* 2. QUICK INTRO SECTION (Snapshot of About) */}
-            <section className={`py-24 ${styles.sectionBg}`}>
+            {/* 2. MILLET PHOTO STRIP */}
+            <section className="py-0 bg-white">
+                <div className="flex overflow-hidden">
+                    {milletImages.map((img, idx) => (
+                        <div key={idx} className="flex-shrink-0 w-1/3 md:w-1/6 h-24 md:h-32 relative group">
+                            <img src={img} alt={`Millet ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                            <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/30 group-hover:bg-transparent' : 'bg-brand-green/20 group-hover:bg-transparent'} transition-colors duration-500`}></div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+
+            {/* 3. ABOUT SECTION */}
+            <section className={`py-24 ${isVibrant ? 'bg-[#fdf9f0]' : 'bg-gray-50'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
@@ -77,10 +83,10 @@ const LandingPage = ({ theme }) => {
                             <h2 className={`text-3xl md:text-4xl ${styles.headingClass} text-gray-900 mb-6 leading-snug`}>
                                 Shaping Dynamic Ecosystems for Agri-Food Systems
                             </h2>
-                            <p className={`${styles.textClass} mb-6 leading-relaxed`}>
+                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                                 {siteContent.about.intro}
                             </p>
-                            <p className={`${styles.textClass} mb-8 leading-relaxed`}>
+                            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                                 {siteContent.about.purpose}
                             </p>
                             <Link
@@ -92,18 +98,18 @@ const LandingPage = ({ theme }) => {
                             </Link>
                         </div>
                         <div className="relative">
-                            {isVibrant && <div className="absolute -inset-4 bg-gradient-to-tr from-brand-yellow to-brand-green opacity-20 blur-2xl rounded-full z-0"></div>}
+                            {isVibrant && <div className="absolute -inset-4 bg-gradient-to-tr from-brand-yellow to-brand-green opacity-15 blur-2xl rounded-full z-0"></div>}
                             <img
                                 src={images.about.team}
-                                alt="Insights Team / Office"
-                                className={`relative z-10 w-full h-[500px] object-cover ${isVibrant ? 'rounded-3xl shadow-2xl' : 'rounded-lg shadow-xl'}`}
+                                alt="Insights Office"
+                                className={`relative z-10 w-full h-[500px] object-cover ${isVibrant ? 'rounded-3xl shadow-2xl' : 'rounded-2xl shadow-xl'}`}
                             />
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* 3. CORE SERVICES HIGHLIGHT */}
+            {/* 4. SERVICES GRID */}
             <section className="py-24 bg-white relative overflow-hidden">
                 {isVibrant && <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-yellow/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-0"></div>}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -115,28 +121,48 @@ const LandingPage = ({ theme }) => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {siteContent.services.list.slice(0, 3).map((service, index) => (
+                        {siteContent.services.list.map((service, index) => (
                             <Link
                                 key={service.id}
                                 to={`${basePath}/services/${service.id}`}
-                                className={`group flex flex-col p-8 rounded-2xl transition-all duration-300 ${styles.cardBg} ${isVibrant ? 'transform hover:-translate-y-2 hover:shadow-2xl' : ''}`}
+                                className={`group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 ${styles.cardBg}`}
                             >
-                                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-colors ${isVibrant ? 'bg-brand-yellow/20 text-brand-dark group-hover:bg-brand-yellow' : 'bg-brand-green/10 text-brand-green group-hover:bg-brand-green group-hover:text-white'}`}>
-                                    <span className="font-black text-xl">{index + 1}</span>
+                                <div className="h-48 overflow-hidden relative">
+                                    <img
+                                        src={images.services[service.id] || images.about.culture}
+                                        alt={service.title}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/30 group-hover:bg-transparent' : 'bg-brand-green/20 group-hover:bg-transparent'} transition-colors`}></div>
+                                    <div className={`absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm ${isVibrant ? 'bg-brand-yellow/90' : 'bg-brand-green/90'}`}>
+                                        {String(index + 1).padStart(2, '0')}
+                                    </div>
                                 </div>
-                                <h3 className={`text-xl font-bold text-gray-900 mb-3 group-hover:${styles.accentColor} transition-colors`}>{service.title}</h3>
-                                <p className="text-gray-600 font-medium leading-relaxed flex-grow">{service.desc}</p>
+                                <div className="p-6 flex-grow">
+                                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-green transition-colors">{service.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{service.desc}</p>
+                                </div>
                             </Link>
                         ))}
                     </div>
+                </div>
+            </section>
 
-                    <div className="mt-12 text-center">
-                        <Link
-                            to={`${basePath}/services/value-chain`}
-                            className={`inline-flex items-center px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 ${isVibrant ? 'bg-brand-dark text-brand-yellow hover:bg-brand-green hover:text-white' : 'bg-brand-green text-white hover:bg-brand-dark'}`}
-                        >
-                            View All Services
-                        </Link>
+            {/* 5. STATS / IMPACT STRIP */}
+            <section className={`py-16 ${isVibrant ? 'bg-brand-dark' : 'bg-gradient-to-r from-brand-green to-brand-dark'}`}>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        {[
+                            { number: '6+', label: 'Service Verticals' },
+                            { number: '50+', label: 'Millet Varieties Covered' },
+                            { number: '10+', label: 'Institutional Partners' },
+                            { number: '5+', label: 'States Engaged' },
+                        ].map((stat, idx) => (
+                            <div key={idx} className="text-white">
+                                <div className={`text-4xl md:text-5xl font-black mb-2 ${isVibrant ? 'text-brand-yellow' : 'text-white'}`}>{stat.number}</div>
+                                <div className="text-sm uppercase tracking-wider text-gray-300 font-medium">{stat.label}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

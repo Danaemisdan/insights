@@ -61,8 +61,7 @@ const Template2Layout = () => {
                     <div className="flex justify-between items-center h-16">
                         <div className="flex-shrink-0 flex items-center">
                             <Link to="/template2" className="flex items-center group">
-                                {/* Using logo 3 for vibrant? Let's stick to 2 as it was good for light themes, or 1 depending. */}
-                                <img src="/logos/2.svg" alt="Insights Value Hub" className="h-[4.5rem] w-auto object-contain transition-transform group-hover:scale-105 duration-300" />
+                                <img src="/logos/2.svg" alt="Insights Value Hub" className="h-20 md:h-24 w-auto object-contain transition-transform group-hover:scale-105 duration-300" />
                             </Link>
                         </div>
 
@@ -231,7 +230,7 @@ const Template2Layout = () => {
             </header>
 
             {/* Main Content */}
-            <main className="flex-grow pt-[96px]">
+            <main className="flex-grow pt-[100px] md:pt-[110px]">
                 <Outlet />
             </main>
 
@@ -242,8 +241,8 @@ const Template2Layout = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
                         <div className="md:col-span-12 lg:col-span-4">
-                            <div className="bg-white inline-block p-4 rounded-2xl mb-8">
-                                <img src="/logos/2.svg" alt="Insights Value Hub" className="h-12 w-auto" />
+                            <div className="bg-white inline-block p-5 rounded-2xl mb-8">
+                                <img src="/logos/2.svg" alt="Insights Value Hub" className="h-16 w-auto" />
                             </div>
                             <p className="text-brand-yellow font-bold text-lg leading-relaxed mb-8 max-w-sm">
                                 {siteContent.global.tagline}

@@ -8,12 +8,13 @@ export default {
     extend: {
       colors: {
         brand: {
-          green: '#2A5A3B',
-          lightGreen: '#EAF2EC',
-          yellow: '#E5C043',
-          dark: '#1A3A26',
-          darkGreen: '#1A3A26',
-          gold: '#E5C043'
+          green: '#2e7d32', // Richer agricultural green (Nutrihub style)
+          lightGreen: '#e8f5e9',
+          yellow: '#fbc02d',
+          orange: '#f57c00', // Nutrihub orange accent
+          dark: '#1b5e20',
+          darkGreen: '#1b5e20',
+          gold: '#fbc02d'
         }
       }
     },
