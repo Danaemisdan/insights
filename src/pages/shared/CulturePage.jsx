@@ -22,7 +22,7 @@ const CulturePage = () => {
             {/* Hero */}
             <div className="relative min-h-[45vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={images.about.meeting} alt="People & Culture" className="w-full h-full object-cover" />
+                    <img src={images.about.meeting} alt="People & Culture" className="w-full h-full object-cover" loading="eager" />
                     <div className={`absolute inset-0 bg-brand-dark/85`}></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">
@@ -47,9 +47,9 @@ const CulturePage = () => {
 
                         <div className="relative">
                             <div className="grid grid-cols-2 gap-4 relative z-10">
-                                <img src={images.about.culture} alt="Culture" className={`w-full h-64 object-cover rounded-lg shadow-sm`} />
-                                <img src={images.works.project4} alt="Team work" className={`w-full h-64 object-cover mt-8 rounded-lg shadow-sm`} />
-                                <img src={images.about.team} alt="Office" className={`w-full h-64 object-cover col-span-2 rounded-lg shadow-sm`} />
+                                <img src={images.about.culture} alt="Culture" className={`w-full h-64 object-cover rounded-lg shadow-sm`} loading="lazy" decoding="async" />
+                                <img src={images.works.project4} alt="Team work" className={`w-full h-64 object-cover mt-8 rounded-lg shadow-sm`} loading="lazy" decoding="async" />
+                                <img src={images.about.team} alt="Office" className={`w-full h-64 object-cover col-span-2 rounded-lg shadow-sm`} loading="lazy" decoding="async" />
                             </div>
                         </div>
                     </div>
@@ -74,12 +74,15 @@ const CulturePage = () => {
                     </div>
 
                     {/* Advisory Network */}
-                    <div className={`py-16 px-8 text-center bg-gradient-to-r from-brand-green to-brand-dark text-white rounded-2xl`}>
-                        <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6 bg-white/20 text-white`}>
+                    <div className={`py-16 px-8 text-center bg-gradient-to-r from-brand-green to-brand-dark text-white rounded-2xl relative overflow-hidden`}>
+                        <div className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none translate-x-1/2 -translate-y-1/2 rotate-12">
+                            <img src="/logos/1_official_highres.png" alt="" className="w-full h-full object-contain" />
+                        </div>
+                        <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6 bg-white/20 text-white relative z-10`}>
                             {siteContent.culture.advisory.tag}
                         </span>
-                        <h2 className={`text-3xl font-extrabold mb-4`}>Advisory Network</h2>
-                        <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">{siteContent.culture.advisory.text}</p>
+                        <h2 className={`text-3xl font-extrabold mb-4 relative z-10`}>Advisory Network</h2>
+                        <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed relative z-10">{siteContent.culture.advisory.text}</p>
                     </div>
                 </div>
             </div>

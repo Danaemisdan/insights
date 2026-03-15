@@ -31,7 +31,7 @@ const ServicePage = () => {
             {/* Hero Header with image background */}
             <div className="relative min-h-[50vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={heroImage} alt={service.title} className="w-full h-full object-cover" />
+                    <img src={heroImage} alt={service.title} className="w-full h-full object-cover" loading="eager" />
                     <div className={`absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-green/60 to-transparent`}></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
@@ -72,29 +72,38 @@ const ServicePage = () => {
                                 src={heroImage}
                                 alt={service.title}
                                 className={`w-full h-[350px] object-cover rounded-2xl shadow-lg`}
+                                loading="lazy"
+                                decoding="async"
                             />
                             <div className="grid grid-cols-2 gap-4">
                                 <img
                                     src={images.millets.barnyard}
                                     alt="Millet grains"
                                     className={`w-full h-40 object-cover rounded-xl`}
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                                 <img
                                     src={images.millets.foxtail}
                                     alt="Foxtail millet"
                                     className={`w-full h-40 object-cover rounded-xl`}
+                                    loading="lazy"
+                                    decoding="async"
                                 />
                             </div>
                         </div>
                     </div>
 
                     {/* CTA */}
-                    <div className={`mt-20 p-12 rounded-3xl text-center bg-gradient-to-r from-brand-green to-brand-dark`}>
-                        <h3 className="text-3xl font-bold text-white mb-4">Interested in {service.title}?</h3>
-                        <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">Reach out to discuss how we can support your specific needs across this domain.</p>
+                    <div className={`mt-20 p-12 rounded-3xl text-center bg-gradient-to-r from-brand-green to-brand-dark relative overflow-hidden`}>
+                        <div className="absolute top-0 left-0 w-64 h-64 opacity-10 pointer-events-none -translate-x-1/2 -translate-y-1/2 rotate-45">
+                            <img src="/logos/2_official_highres.png" alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                        </div>
+                        <h3 className="text-3xl font-bold text-white mb-4 relative z-10">Interested in {service.title}?</h3>
+                        <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto relative z-10">Reach out to discuss how we can support your specific needs across this domain.</p>
                         <Link
                             to="/contact"
-                            className={`inline-flex items-center px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 bg-white text-brand-green hover:bg-brand-dark hover:text-white`}
+                            className={`inline-flex items-center px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 bg-white text-brand-green hover:bg-brand-dark hover:text-white relative z-10`}
                         >
                             Get In Touch
                             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

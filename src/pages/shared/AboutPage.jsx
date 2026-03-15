@@ -14,7 +14,7 @@ const AboutPage = () => {
             {/* Hero with parallax-style image */}
             <div className="relative min-h-[50vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={images.about.team} alt="About INSIGHTS" className="w-full h-full object-cover" />
+                    <img src={images.about.team} alt="About INSIGHTS" className="w-full h-full object-cover" loading="eager" />
                     <div className={`absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/80 to-transparent`}></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
@@ -31,8 +31,11 @@ const AboutPage = () => {
             </div>
 
             {/* Purpose & Vision */}
-            <div className={`py-24 bg-white`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={`py-24 bg-white relative overflow-hidden`}>
+                <div className="absolute top-1/2 right-0 w-96 h-96 opacity-[0.03] pointer-events-none translate-x-1/2 -translate-y-1/2 rotate-12">
+                    <img src="/logos/2_official_highres.png" alt="" className="w-full h-full object-contain" />
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
                         <div>
                             <h2 className={`text-3xl ${styles.headingClass} text-gray-900 mb-6`}>Our Purpose</h2>
@@ -46,9 +49,9 @@ const AboutPage = () => {
                             <p className="text-lg text-gray-600 leading-relaxed">{siteContent.about.journey.text}</p>
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                            <img src={images.about.building} alt="Building" className={`w-full h-64 object-cover rounded-2xl shadow-lg`} />
-                            <img src={images.about.meeting} alt="Team Meeting" className={`w-full h-64 object-cover rounded-2xl shadow-lg mt-8`} />
-                            <img src={images.about.culture} alt="Culture" className={`w-full h-64 object-cover rounded-2xl shadow-lg col-span-2`} />
+                            <img src={images.about.building} alt="Building" className={`w-full h-64 object-cover rounded-2xl shadow-lg`} loading="lazy" decoding="async" />
+                            <img src={images.about.meeting} alt="Team Meeting" className={`w-full h-64 object-cover rounded-2xl shadow-lg mt-8`} loading="lazy" decoding="async" />
+                            <img src={images.about.culture} alt="Culture" className={`w-full h-64 object-cover rounded-2xl shadow-lg col-span-2`} loading="lazy" decoding="async" />
                         </div>
                     </div>
 
@@ -73,8 +76,11 @@ const AboutPage = () => {
             </div>
 
             {/* CTA */}
-            <div className={`py-16 bg-gradient-to-r from-brand-green to-brand-dark`}>
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className={`py-16 bg-gradient-to-r from-brand-green to-brand-dark relative overflow-hidden`}>
+                <div className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none translate-x-1/2 -translate-y-1/2 rotate-12">
+                    <img src="/logos/1_official_highres.png" alt="" className="w-full h-full object-contain" />
+                </div>
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                     <h2 className="text-3xl font-extrabold text-white mb-6">Ready to Collaborate?</h2>
                     <p className="text-lg text-gray-200 mb-8">Join our growing network of partners and stakeholders shaping the future of agri-food systems.</p>
                     <Link

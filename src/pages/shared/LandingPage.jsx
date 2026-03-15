@@ -21,7 +21,7 @@ const LandingPage = () => {
             {/* 1. HERO SECTION - Full bleed */}
             <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={heroImage} alt="Hero background" className="w-full h-full object-cover" />
+                    <img src={heroImage} alt="Hero background" className="w-full h-full object-cover" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent"></div>
                 </div>
 
@@ -61,7 +61,7 @@ const LandingPage = () => {
                 <div className="flex overflow-hidden">
                     {milletImages.map((img, idx) => (
                         <div key={idx} className="flex-shrink-0 w-1/3 md:w-1/6 h-24 md:h-32 relative group">
-                            <img src={img} alt={`Millet ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                            <img src={img} alt={`Millet ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
                             <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors duration-500"></div>
                         </div>
                     ))}
@@ -92,11 +92,15 @@ const LandingPage = () => {
                             </Link>
                         </div>
                         <div className="relative">
-                            
+                            <div className="absolute -top-12 -right-12 w-64 h-64 opacity-5 pointer-events-none z-0 rotate-12">
+                                <img src="/logos/1_official_highres.png" alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                            </div>
                             <img
                                 src={images.about.team}
                                 alt="Insights Office"
                                 className={`relative z-10 w-full h-[500px] object-cover rounded-2xl shadow-xl`}
+                                loading="lazy"
+                                decoding="async"
                             />
                         </div>
                     </div>
@@ -105,6 +109,9 @@ const LandingPage = () => {
 
             {/* 4. SERVICES GRID */}
             <section className="py-24 bg-white relative overflow-hidden">
+                <div className="absolute bottom-0 left-0 w-80 h-80 opacity-[0.03] pointer-events-none -translate-x-1/2 translate-y-1/2 -rotate-12">
+                    <img src="/logos/2_official_highres.png" alt="" className="w-full h-full object-contain" />
+                </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`text-sm font-bold uppercase tracking-widest ${styles.accentColor} mb-4 block`}>Our Expertise</span>
@@ -125,6 +132,8 @@ const LandingPage = () => {
                                         src={images.services[service.id] || images.about.culture}
                                         alt={service.title}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        loading="lazy"
+                                        decoding="async"
                                     />
                                     <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors"></div>
                                     <div className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm bg-brand-green/90">
