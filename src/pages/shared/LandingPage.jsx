@@ -8,12 +8,12 @@ const LandingPage = ({ theme }) => {
     
 
     const styles = {
-        accentColor: isVibrant ? 'text-brand-yellow' : 'text-brand-green',
-        headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',
-        cardBg: isVibrant ? 'bg-white border-2 border-brand-yellow/10 hover:border-brand-yellow/40 hover:shadow-2xl' : 'bg-white shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand-green/30',
+        accentColor: 'text-brand-green',
+        headingClass: 'font-extrabold tracking-tight',
+        cardBg: 'bg-white shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand-green/30',
     };
 
-    const heroImage = isVibrant ? images.hero.vibrant : images.hero.nutrihub;
+    const heroImage = images.hero.nutrihub;
     const milletImages = [images.millets.barnyard, images.millets.finger, images.millets.foxtail, images.millets.jowar, images.millets.pearl, images.millets.proso];
 
     return (
@@ -22,33 +22,27 @@ const LandingPage = ({ theme }) => {
             <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img src={heroImage} alt="Hero background" className="w-full h-full object-cover" />
-                    <div className={`absolute inset-0 ${isVibrant ? 'bg-gradient-to-br from-brand-dark/95 via-brand-dark/80 to-brand-green/60' : 'bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent'}`}></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent"></div>
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-                    <div className={`max-w-3xl ${isVibrant ? 'mx-auto text-center' : ''}`}>
-                        {isVibrant && (
-                            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-brand-yellow/20 border border-brand-yellow/30 text-brand-yellow font-bold text-sm tracking-widest uppercase mb-8 backdrop-blur-sm">
-                                <span className="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
-                                Innovation • Governance • Strategy
-                            </div>
-                        )}
+                    <div className={'max-w-3xl '}>
                         <h1 className={`text-5xl md:text-6xl lg:text-7xl ${styles.headingClass} text-white mb-8 leading-[1.1]`}>
                             {siteContent.home.hero.headline}
                         </h1>
-                        <p className={`text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl ${isVibrant ? 'mx-auto font-medium' : 'font-light'} leading-relaxed`}>
+                        <p className={`text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed`}>
                             {siteContent.home.hero.subline}
                         </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 ${isVibrant ? 'justify-center' : ''}`}>
+                        <div className={`flex flex-col sm:flex-row gap-4 `}>
                             <Link
-                                to={`${basePath}/about`}
-                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${isVibrant ? 'bg-brand-yellow text-brand-dark hover:bg-white' : 'bg-white text-brand-dark hover:bg-brand-green hover:text-white'}`}
+                                to={`/about`}
+                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl bg-white text-brand-dark hover:bg-brand-green hover:text-white`}
                             >
                                 Discover Our Platform
                             </Link>
                             <Link
-                                to={`${basePath}/services/value-chain`}
-                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg border-2 transition-all duration-300 transform hover:-translate-y-1 ${isVibrant ? 'border-brand-yellow/50 text-brand-yellow hover:bg-brand-yellow hover:text-brand-dark' : 'border-white/40 text-white hover:bg-white hover:text-brand-dark'}`}
+                                to={`/services/value-chain`}
+                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg border-2 transition-all duration-300 transform hover:-translate-y-1 border-white/40 text-white hover:bg-white hover:text-brand-dark`}
                             >
                                 Explore Services
                             </Link>
@@ -68,14 +62,14 @@ const LandingPage = ({ theme }) => {
                     {milletImages.map((img, idx) => (
                         <div key={idx} className="flex-shrink-0 w-1/3 md:w-1/6 h-24 md:h-32 relative group">
                             <img src={img} alt={`Millet ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                            <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/30 group-hover:bg-transparent' : 'bg-brand-green/20 group-hover:bg-transparent'} transition-colors duration-500`}></div>
+                            <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors duration-500"></div>
                         </div>
                     ))}
                 </div>
             </section>
 
             {/* 3. ABOUT SECTION */}
-            <section className={`py-24 ${isVibrant ? 'bg-[#fdf9f0]' : 'bg-gray-50'}`}>
+            <section className="py-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                         <div>
@@ -90,7 +84,7 @@ const LandingPage = ({ theme }) => {
                                 {siteContent.about.purpose}
                             </p>
                             <Link
-                                to={`${basePath}/about`}
+                                to={`/about`}
                                 className={`inline-flex items-center font-bold text-lg group ${styles.accentColor} hover:text-brand-dark transition-colors`}
                             >
                                 Read Our Full Story
@@ -98,11 +92,11 @@ const LandingPage = ({ theme }) => {
                             </Link>
                         </div>
                         <div className="relative">
-                            {isVibrant && <div className="absolute -inset-4 bg-gradient-to-tr from-brand-yellow to-brand-green opacity-15 blur-2xl rounded-full z-0"></div>}
+                            
                             <img
                                 src={images.about.team}
                                 alt="Insights Office"
-                                className={`relative z-10 w-full h-[500px] object-cover ${isVibrant ? 'rounded-3xl shadow-2xl' : 'rounded-2xl shadow-xl'}`}
+                                className={`relative z-10 w-full h-[500px] object-cover rounded-2xl shadow-xl`}
                             />
                         </div>
                     </div>
@@ -111,7 +105,6 @@ const LandingPage = ({ theme }) => {
 
             {/* 4. SERVICES GRID */}
             <section className="py-24 bg-white relative overflow-hidden">
-                {isVibrant && <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-yellow/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-0"></div>}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center max-w-3xl mx-auto mb-16">
                         <span className={`text-sm font-bold uppercase tracking-widest ${styles.accentColor} mb-4 block`}>Our Expertise</span>
@@ -124,7 +117,7 @@ const LandingPage = ({ theme }) => {
                         {siteContent.services.list.map((service, index) => (
                             <Link
                                 key={service.id}
-                                to={`${basePath}/services/${service.id}`}
+                                to={`/services/${service.id}`}
                                 className={`group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 ${styles.cardBg}`}
                             >
                                 <div className="h-48 overflow-hidden relative">
@@ -133,8 +126,8 @@ const LandingPage = ({ theme }) => {
                                         alt={service.title}
                                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                     />
-                                    <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/30 group-hover:bg-transparent' : 'bg-brand-green/20 group-hover:bg-transparent'} transition-colors`}></div>
-                                    <div className={`absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm ${isVibrant ? 'bg-brand-yellow/90' : 'bg-brand-green/90'}`}>
+                                    <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors"></div>
+                                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm bg-brand-green/90">
                                         {String(index + 1).padStart(2, '0')}
                                     </div>
                                 </div>
@@ -149,7 +142,7 @@ const LandingPage = ({ theme }) => {
             </section>
 
             {/* 5. STATS / IMPACT STRIP */}
-            <section className={`py-16 ${isVibrant ? 'bg-brand-dark' : 'bg-gradient-to-r from-brand-green to-brand-dark'}`}>
+            <section className="py-16 bg-gradient-to-r from-brand-green to-brand-dark">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         {[
@@ -159,7 +152,7 @@ const LandingPage = ({ theme }) => {
                             { number: '5+', label: 'States Engaged' },
                         ].map((stat, idx) => (
                             <div key={idx} className="text-white">
-                                <div className={`text-4xl md:text-5xl font-black mb-2 ${isVibrant ? 'text-brand-yellow' : 'text-white'}`}>{stat.number}</div>
+                                <div className="text-4xl md:text-5xl font-black mb-2 text-white">{stat.number}</div>
                                 <div className="text-sm uppercase tracking-wider text-gray-300 font-medium">{stat.label}</div>
                             </div>
                         ))}
