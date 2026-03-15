@@ -2,13 +2,11 @@ import React from 'react';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
-const CulturePage = ({ theme }) => {
-    
-
+const CulturePage = () => {
     const styles = {
-        headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',
-        accentColor: isVibrant ? 'text-brand-yellow' : 'text-brand-green',
-        cardBg: isVibrant ? 'bg-[#fdfaf2] border-2 border-brand-yellow/20' : 'bg-white shadow-sm border border-gray-100',
+        headingClass: 'font-extrabold tracking-tight',
+        accentColor: 'text-brand-green',
+        cardBg: 'bg-white shadow-sm border border-gray-100',
     };
 
     const ethosIcons = [
@@ -25,10 +23,10 @@ const CulturePage = ({ theme }) => {
             <div className="relative min-h-[45vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img src={images.about.meeting} alt="People & Culture" className="w-full h-full object-cover" />
-                    <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/85' : 'bg-brand-dark/85'}`}></div>
+                    <div className={`absolute inset-0 bg-brand-dark/85`}></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">
-                    <span className={`text-sm font-bold uppercase tracking-widest mb-4 block ${isVibrant ? 'text-brand-yellow' : 'text-brand-orange'}`}>People & Culture</span>
+                    <span className={`text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange`}>People & Culture</span>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 max-w-4xl leading-tight text-white">
                         Driven by Expertise and Strategic Focus
                     </h1>
@@ -36,7 +34,7 @@ const CulturePage = ({ theme }) => {
             </div>
 
             {/* Team Section */}
-            <div className={`py-20 ${isVibrant ? 'bg-[#fdf9f0]' : 'bg-white'}`}>
+            <div className={`py-20 bg-white`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20 items-center">
                         <div>
@@ -48,11 +46,10 @@ const CulturePage = ({ theme }) => {
                         </div>
 
                         <div className="relative">
-                            {isVibrant && <div className="absolute -inset-4 bg-gradient-to-tr from-brand-yellow to-brand-green opacity-20 blur-2xl rounded-full z-0"></div>}
                             <div className="grid grid-cols-2 gap-4 relative z-10">
-                                <img src={images.about.culture} alt="Culture" className={`w-full h-64 object-cover ${isVibrant ? 'rounded-2xl shadow-xl' : 'rounded-lg shadow-sm'}`} />
-                                <img src={images.works.project4} alt="Team work" className={`w-full h-64 object-cover mt-8 ${isVibrant ? 'rounded-2xl shadow-xl' : 'rounded-lg shadow-sm'}`} />
-                                <img src={images.about.team} alt="Office" className={`w-full h-64 object-cover col-span-2 ${isVibrant ? 'rounded-2xl shadow-xl' : 'rounded-lg shadow-sm'}`} />
+                                <img src={images.about.culture} alt="Culture" className={`w-full h-64 object-cover rounded-lg shadow-sm`} />
+                                <img src={images.works.project4} alt="Team work" className={`w-full h-64 object-cover mt-8 rounded-lg shadow-sm`} />
+                                <img src={images.about.team} alt="Office" className={`w-full h-64 object-cover col-span-2 rounded-lg shadow-sm`} />
                             </div>
                         </div>
                     </div>
@@ -66,8 +63,8 @@ const CulturePage = ({ theme }) => {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                             {siteContent.culture.ethosList.map((ethos, idx) => (
-                                <div key={idx} className={`${styles.cardBg} p-8 rounded-2xl text-center group transition-all duration-300 ${isVibrant ? 'hover:-translate-y-2 hover:shadow-xl' : 'hover:shadow-md'}`}>
-                                    <div className={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 transition-colors ${isVibrant ? 'bg-brand-yellow/20 text-brand-dark group-hover:bg-brand-yellow' : 'bg-brand-green/10 text-brand-green group-hover:bg-brand-green group-hover:text-white'}`}>
+                                <div key={idx} className={`${styles.cardBg} p-8 rounded-2xl text-center group transition-all duration-300 hover:shadow-md`}>
+                                    <div className={`w-14 h-14 mx-auto rounded-xl flex items-center justify-center mb-4 transition-colors bg-brand-green/10 text-brand-green group-hover:bg-brand-green group-hover:text-white`}>
                                         {ethosIcons[idx]}
                                     </div>
                                     <h3 className="font-bold text-gray-900 group-hover:text-brand-green transition-colors">{ethos}</h3>
@@ -77,8 +74,8 @@ const CulturePage = ({ theme }) => {
                     </div>
 
                     {/* Advisory Network */}
-                    <div className={`py-16 px-8 text-center ${isVibrant ? 'bg-brand-dark text-white rounded-3xl' : 'bg-gradient-to-r from-brand-green to-brand-dark text-white rounded-2xl'}`}>
-                        <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6 ${isVibrant ? 'bg-brand-yellow text-brand-dark' : 'bg-white/20 text-white'}`}>
+                    <div className={`py-16 px-8 text-center bg-gradient-to-r from-brand-green to-brand-dark text-white rounded-2xl`}>
+                        <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-bold uppercase tracking-wider mb-6 bg-white/20 text-white`}>
                             {siteContent.culture.advisory.tag}
                         </span>
                         <h2 className={`text-3xl font-extrabold mb-4`}>Advisory Network</h2>

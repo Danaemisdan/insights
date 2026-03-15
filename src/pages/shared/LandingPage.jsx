@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
-const LandingPage = ({ theme }) => {
+const LandingPage = () => {
     
     
 

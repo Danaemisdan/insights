@@ -29,25 +29,25 @@ const App = () => {
             <Routes>
                 {/* Main Unified Layout */}
                 <Route path="/" element={<Template1Layout />}>
-                    <Route index element={<LandingPage theme="nutrihub" />} />
+                    <Route index element={<LandingPage />} />
                     
                     {/* Organization Subpages */}
-                    <Route path="about" element={<AboutPage theme="nutrihub" />} />
-                    <Route path="culture" element={<CulturePage theme="nutrihub" />} />
+                    <Route path="about" element={<AboutPage />} />
+                    <Route path="culture" element={<CulturePage />} />
                     
                     {/* Services Subpages (dynamic capability route) */}
-                    <Route path="services/:serviceId" element={<ServicePage theme="nutrihub" />} />
+                    <Route path="services/:serviceId" element={<ServicePage />} />
                     
                     {/* Additional Sections */}
-                    <Route path="works" element={<WorksPage theme="nutrihub" />} />
-                    <Route path="insights" element={<InsightsPage theme="nutrihub" />} />
+                    <Route path="works" element={<WorksPage />} />
+                    <Route path="insights" element={<InsightsPage />} />
                     
                     {/* Work With Us Subpages */}
-                    <Route path="careers" element={<CareersPage theme="nutrihub" />} />
-                    <Route path="collaborations" element={<CollaborationsPage theme="nutrihub" />} />
+                    <Route path="careers" element={<CareersPage />} />
+                    <Route path="collaborations" element={<CollaborationsPage />} />
                     
                     {/* Contact */}
-                    <Route path="contact" element={<ContactPage theme="nutrihub" />} />
+                    <Route path="contact" element={<ContactPage />} />
                 </Route>
             </Routes>
         </Router>

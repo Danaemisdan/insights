@@ -2,13 +2,11 @@ import React from 'react';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
-const WorksPage = ({ theme }) => {
-    
-
+const WorksPage = () => {
     const styles = {
-        headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',
-        accentColor: isVibrant ? 'text-brand-yellow' : 'text-brand-green',
-        cardBg: isVibrant ? 'bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border-2 border-brand-yellow/10' : 'bg-white rounded-2xl shadow-sm border border-gray-100',
+        headingClass: 'font-extrabold tracking-tight',
+        accentColor: 'text-brand-green',
+        cardBg: 'bg-white rounded-2xl shadow-sm border border-gray-100',
     };
 
     const projects = [
@@ -24,10 +22,10 @@ const WorksPage = ({ theme }) => {
             <div className="relative min-h-[45vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img src={images.works.project3} alt="Our Works" className="w-full h-full object-cover" />
-                    <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/85' : 'bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-transparent'}`}></div>
+                    <div className={`absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/80 to-transparent`}></div>
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16">
-                    <span className={`text-sm font-bold uppercase tracking-widest mb-4 block ${isVibrant ? 'text-brand-yellow' : 'text-brand-orange'}`}>Our Works</span>
+                    <span className={`text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange`}>Our Works</span>
                     <h1 className={`text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 max-w-4xl leading-tight text-white`}>
                         Driving Tangible Impact in Agri-Food Systems
                     </h1>
@@ -42,9 +40,9 @@ const WorksPage = ({ theme }) => {
                         {projects.map((project, idx) => (
                             <div key={idx} className={`${styles.cardBg} overflow-hidden group`}>
                                 <div className="h-72 overflow-hidden relative">
-                                    <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/20' : 'bg-brand-green/10'} group-hover:bg-transparent transition-colors z-10`}></div>
+                                    <div className={`absolute inset-0 bg-brand-green/10 group-hover:bg-transparent transition-colors z-10`}></div>
                                     <img src={project.img} alt={project.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
-                                    <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold z-20 ${isVibrant ? 'bg-brand-yellow text-brand-dark' : 'bg-brand-green text-white'}`}>{project.tag}</span>
+                                    <span className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold z-20 bg-brand-green text-white`}>{project.tag}</span>
                                 </div>
                                 <div className="p-8">
                                     <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
@@ -56,11 +54,11 @@ const WorksPage = ({ theme }) => {
 
                     {/* Case Snapshots & International */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div className={`p-10 ${isVibrant ? 'bg-brand-dark text-white rounded-3xl' : 'bg-gradient-to-br from-brand-green to-brand-dark text-white rounded-2xl'}`}>
+                        <div className={`p-10 bg-gradient-to-br from-brand-green to-brand-dark text-white rounded-2xl`}>
                             <h3 className="text-2xl font-extrabold mb-4">Case Snapshots</h3>
                             <p className="text-gray-200 font-medium leading-relaxed">{siteContent.works.caseSnapshots}</p>
                         </div>
-                        <div className={`p-10 ${isVibrant ? 'bg-[#fdfaf2] border-2 border-brand-yellow/20 rounded-3xl' : 'bg-white shadow-lg border border-gray-100 rounded-2xl'}`}>
+                        <div className={`p-10 bg-white shadow-lg border border-gray-100 rounded-2xl`}>
                             <h3 className={`text-2xl font-extrabold text-gray-900 mb-4`}>International Engagements</h3>
                             <p className="text-gray-600 font-medium leading-relaxed">{siteContent.works.international}</p>
                         </div>
@@ -73,7 +71,7 @@ const WorksPage = ({ theme }) => {
                 {[images.millets.barnyard, images.millets.jowar, images.millets.kodo, images.millets.little, images.millets.pearl, images.millets.proso].map((img, idx) => (
                     <div key={idx} className="flex-shrink-0 w-1/3 md:w-1/6 h-24 md:h-32 relative">
                         <img src={img} alt={`Millet ${idx}`} className="w-full h-full object-cover" />
-                        <div className={`absolute inset-0 ${isVibrant ? 'bg-brand-dark/30' : 'bg-brand-green/20'}`}></div>
+                        <div className={`absolute inset-0 bg-brand-green/20`}></div>
                     </div>
                 ))}
             </div>
