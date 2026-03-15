@@ -60,7 +60,7 @@ const Template1Layout = () => {
                         {/* Logo - BIGGER & COLORFUL */}
                         <div className="flex-shrink-0 flex items-center">
                             <Link to="/" className="flex items-center py-1">
-                                <img src="/logos/1_colorful.svg" alt="Insights Value Hub" className="h-20 md:h-32 w-auto object-contain transition-all duration-300" />
+                                <img src="/logos/1_official_highres.png" alt="Insights Value Hub" className="h-20 md:h-32 w-auto object-contain transition-all duration-300" />
                             </Link>
                         </div>
 
@@ -235,7 +235,7 @@ const Template1Layout = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                         <div className="lg:col-span-1">
-                            <img src="/logos/1_colorful.svg" alt="Insights Value Hub" className="h-40 w-auto mb-6" />
+                            <img src="/logos/1_official_highres.png" alt="Insights Value Hub" className="h-40 w-auto mb-6" />
                             <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
                                 {siteContent.global.tagline}
                             </p>
