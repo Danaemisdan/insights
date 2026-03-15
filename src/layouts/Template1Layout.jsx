@@ -54,13 +54,13 @@ const Template1Layout = () => {
             <div className="h-1 bg-gradient-to-r from-brand-green via-brand-orange to-brand-green w-full fixed top-0 z-50"></div>
 
             {/* Header */}
-            <header className={`fixed w-full z-40 transition-all duration-500 ${scrolled ? 'bg-white/98 shadow-lg backdrop-blur-md py-1 top-1' : 'bg-white py-3 top-1'}`}>
+            <header className={`fixed w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white/98 shadow-md backdrop-blur-md py-1.5 top-1' : 'bg-white py-2 top-1'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
-                        {/* Logo - MASSIVE & COLORFUL */}
+                        {/* Logo - BIG & COLORFUL */}
                         <div className="flex-shrink-0 flex items-center">
                             <Link to="/" className="flex items-center">
-                                <img src="/logos/1_colorful.svg" alt="Insights Value Hub" className="h-[9.5rem] md:h-[11rem] w-auto object-contain transition-all duration-300" />
+                                <img src="/logos/1_colorful.svg" alt="Insights Value Hub" className="h-[4.5rem] md:h-24 w-auto object-contain transition-all duration-300" />
                             </Link>
                         </div>
 
@@ -225,8 +225,8 @@ const Template1Layout = () => {
                 </div>
             </header>
 
-            {/* Main Content (padded for large logo) */}
-            <main className="flex-grow pt-[160px] md:pt-[180px]">
+            {/* Main Content (padded for logo) */}
+            <main className="flex-grow pt-[88px] md:pt-[110px]">
                 <Outlet />
             </main>
 
