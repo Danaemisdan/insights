@@ -3,7 +3,7 @@ import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
 const WorksPage = ({ theme }) => {
-    const isVibrant = theme === 'vibrant';
+    
 
     const styles = {
         headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',

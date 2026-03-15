@@ -4,8 +4,8 @@ import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
 const AboutPage = ({ theme }) => {
-    const isVibrant = theme === 'vibrant';
-    const basePath = isVibrant ? '/template2' : '/template1';
+    
+    
 
     const styles = {
         headingClass: isVibrant ? 'font-black uppercase tracking-tight' : 'font-extrabold tracking-tight',

@@ -4,8 +4,8 @@ import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
 const CareersPage = ({ theme }) => {
-    const isVibrant = theme === 'vibrant';
-    const basePath = isVibrant ? '/template2' : '/template1';
+    
+    
 
     const styles = {
         headerBg: isVibrant ? 'bg-brand-dark text-white' : 'bg-gradient-to-br from-brand-dark via-brand-green to-brand-dark text-white',

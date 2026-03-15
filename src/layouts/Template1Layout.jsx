@@ -30,22 +30,22 @@ const Template1Layout = () => {
     };
 
     const mainNavLinks = [
-        { name: 'Know About Us', href: '/template1/about' },
-        { name: 'People & Culture', href: '/template1/culture' },
+        { name: 'Know About Us', href: '/about' },
+        { name: 'People & Culture', href: '/culture' },
     ];
 
     const servicesLinks = siteContent.services.list.map(s => ({
-        name: s.title, href: `/template1/services/${s.id}`
+        name: s.title, href: `/services/${s.id}`
     }));
 
     const workWithUsLinks = [
-        { name: 'Careers', href: '/template1/careers' },
-        { name: 'Collaborations', href: '/template1/collaborations' },
+        { name: 'Careers', href: '/careers' },
+        { name: 'Collaborations', href: '/collaborations' },
     ];
 
     const extraNavLinks = [
-        { name: 'Our Works', href: '/template1/works' },
-        { name: 'Insights', href: '/template1/insights' },
+        { name: 'Our Works', href: '/works' },
+        { name: 'Insights', href: '/insights' },
     ];
 
     return (
@@ -57,10 +57,10 @@ const Template1Layout = () => {
             <header className={`fixed w-full z-40 transition-all duration-500 ${scrolled ? 'bg-white/98 shadow-lg backdrop-blur-md py-1 top-1' : 'bg-white py-3 top-1'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
-                        {/* Logo - LARGE */}
+                        {/* Logo - MASSIVE & COLORFUL */}
                         <div className="flex-shrink-0 flex items-center">
-                            <Link to="/template1" className="flex items-center">
-                                <img src="/logos/4.svg" alt="Insights Value Hub" className="h-20 md:h-24 w-auto object-contain transition-all duration-300" />
+                            <Link to="/" className="flex items-center">
+                                <img src="/logos/1_colorful.svg" alt="Insights Value Hub" className="h-[9.5rem] md:h-[11rem] w-auto object-contain transition-all duration-300" />
                             </Link>
                         </div>
 
@@ -132,7 +132,7 @@ const Template1Layout = () => {
                         {/* Desktop CTA */}
                         <div className="hidden xl:flex items-center">
                             <Link
-                                to="/template1/contact"
+                                to="/contact"
                                 className="px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-brand-green to-brand-dark text-white hover:shadow-lg hover:shadow-brand-green/30 transform hover:-translate-y-0.5"
                             >
                                 Find Us At
@@ -215,7 +215,7 @@ const Template1Layout = () => {
 
                         <div className="pt-4 border-t border-gray-100 mt-4">
                             <Link
-                                to="/template1/contact"
+                                to="/contact"
                                 className="block w-full text-center bg-gradient-to-r from-brand-green to-brand-dark text-white px-4 py-3.5 rounded-xl font-bold text-base hover:shadow-lg transition-all"
                             >
                                 Find Us At
@@ -225,8 +225,8 @@ const Template1Layout = () => {
                 </div>
             </header>
 
-            {/* Main Content */}
-            <main className="flex-grow pt-[100px] md:pt-[110px]">
+            {/* Main Content (padded for large logo) */}
+            <main className="flex-grow pt-[160px] md:pt-[180px]">
                 <Outlet />
             </main>
 
@@ -235,7 +235,7 @@ const Template1Layout = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                         <div className="lg:col-span-1">
-                            <img src="/logos/4.svg" alt="Insights Value Hub" className="h-20 w-auto brightness-0 invert opacity-90 mb-6" />
+                            <img src="/logos/1_colorful.svg" alt="Insights Value Hub" className="h-40 w-auto mb-6" />
                             <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
                                 {siteContent.global.tagline}
                             </p>

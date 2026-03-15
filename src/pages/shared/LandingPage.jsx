@@ -4,8 +4,8 @@ import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
 const LandingPage = ({ theme }) => {
-    const isVibrant = theme === 'vibrant';
-    const basePath = isVibrant ? '/template2' : '/template1';
+    
+    
 
     const styles = {
         accentColor: isVibrant ? 'text-brand-yellow' : 'text-brand-green',

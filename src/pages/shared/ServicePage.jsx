@@ -5,7 +5,7 @@ import { images } from '../../data/imageMap';
 
 const ServicePage = ({ theme }) => {
     const { serviceId } = useParams();
-    const isVibrant = theme === 'vibrant';
+    
 
     const service = siteContent.services.list.find(s => s.id === serviceId);
 
@@ -19,7 +19,7 @@ const ServicePage = ({ theme }) => {
     }
 
     const heroImage = images.services[serviceId] || images.about.culture;
-    const basePath = isVibrant ? '/template2' : '/template1';
+    
 
     const styles = {
         headerBg: isVibrant ? 'bg-brand-dark text-white' : 'bg-gradient-to-br from-brand-dark via-brand-green to-brand-dark text-white',
