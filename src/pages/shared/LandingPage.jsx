@@ -1,173 +1,233 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
 const LandingPage = () => {
-    
-    
+    const home = siteContent.home;
+    const [currentHeroImage, setCurrentHeroImage] = useState(0);
 
-    const styles = {
-        accentColor: 'text-brand-green',
-        headingClass: 'font-extrabold tracking-tight',
-        cardBg: 'bg-white shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand-green/30',
+    const heroImages = [
+        images.hero.nutrihub,
+        images.services['value-chain'], 
+        images.works.project1,
+        images.about.meeting,
+        images.services['tech-commercialization'],
+    ];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        
+        const interval = setInterval(() => {
+            setCurrentHeroImage((prev) => (prev + 1) % heroImages.length);
+        }, 4000); // Fades every 4 seconds
+        
+        return () => clearInterval(interval);
+    }, [heroImages.length]);
+
+    const premiumMilletsImages = {
+        jowar: images.millets.jowar,
+        pearl: images.millets.pearl,
+        finger: images.millets.finger,
+        foxtail: images.millets.foxtail,
+        barnyard: images.millets.barnyard,
     };
 
-    const heroImage = images.hero.nutrihub;
-    const milletImages = [images.millets.barnyard, images.millets.finger, images.millets.foxtail, images.millets.jowar, images.millets.pearl, images.millets.proso];
-
     return (
-        <div className="w-full">
-            {/* 1. HERO SECTION - Full bleed */}
-            <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img src={heroImage} alt="Hero background" className="w-full h-full object-cover" loading="eager" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent"></div>
-                </div>
+        <div className="w-full bg-[#FAFAFA] font-sans text-gray-900">
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-                    <div className={'max-w-3xl '}>
-                        <h1 className={`text-5xl md:text-6xl lg:text-7xl ${styles.headingClass} text-white mb-8 leading-[1.1]`}>
-                            {siteContent.home.hero.headline}
-                        </h1>
-                        <p className={`text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl font-light leading-relaxed`}>
-                            {siteContent.home.hero.subline}
-                        </p>
-                        <div className={`flex flex-col sm:flex-row gap-4 `}>
-                            <Link
-                                to={`/about`}
-                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl bg-white text-brand-dark hover:bg-brand-green hover:text-white`}
-                            >
-                                Discover Our Platform
-                            </Link>
-                            <Link
-                                to={`/services/value-chain`}
-                                className={`inline-flex justify-center items-center px-10 py-5 rounded-full font-bold text-lg border-2 transition-all duration-300 transform hover:-translate-y-1 border-white/40 text-white hover:bg-white hover:text-brand-dark`}
-                            >
-                                Explore Services
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Scroll indicator */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce">
-                    <svg className="w-6 h-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            {/* 1. HERO - Clean, centered, large typography like Agasthya with Fading Slideshow */}
+            <section className="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-black">
+                {heroImages.map((img, index) => (
+                    <img
+                        key={index}
+                        src={img}
+                        alt={`Hero Slide ${index + 1}`}
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+                            index === currentHeroImage ? 'opacity-50 z-0' : 'opacity-0 -z-10'
+                        }`}
+                    />
+                ))}
+                
+                <div className="relative z-10 max-w-4xl mx-auto px-4 text-center mt-16">
+                    <p className="text-white/80 font-semibold tracking-[0.2em] uppercase text-sm mb-6">Insights Value Hub</p>
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-[1.1] tracking-tight">
+                        {home.hero.headline}
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white/90 font-light mb-12 leading-relaxed">
+                        {home.hero.subline}
+                    </p>
+                    <Link
+                        to="/what-we-do"
+                        className="inline-block bg-white text-black font-semibold px-10 py-4 uppercase tracking-widest text-sm hover:bg-brand-green hover:text-white transition-colors duration-300"
+                    >
+                        Explore What We Do
+                    </Link>
                 </div>
             </section>
 
-            {/* 2. MILLET PHOTO STRIP */}
-            <section className="py-0 bg-white">
-                <div className="flex overflow-hidden">
-                    {milletImages.map((img, idx) => (
-                        <div key={idx} className="flex-shrink-0 w-1/3 md:w-1/6 h-24 md:h-32 relative group">
-                            <img src={img} alt={`Millet ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
-                            <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* 3. ABOUT SECTION */}
-            <section className="py-24 bg-gray-50">
+            {/* 2. STATS STRIP - Minimalist */}
+            <section className="bg-white border-b border-gray-200">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <span className={`text-sm font-bold uppercase tracking-widest ${styles.accentColor} mb-4 block`}>About INSIGHTS</span>
-                            <h2 className={`text-3xl md:text-4xl ${styles.headingClass} text-gray-900 mb-6 leading-snug`}>
-                                Shaping Dynamic Ecosystems for Agri-Food Systems
-                            </h2>
-                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                {siteContent.about.intro}
-                            </p>
-                            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                                {siteContent.about.purpose}
-                            </p>
-                            <Link
-                                to={`/about`}
-                                className={`inline-flex items-center font-bold text-lg group ${styles.accentColor} hover:text-brand-dark transition-colors`}
-                            >
-                                Read Our Full Story
-                                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                            </Link>
-                        </div>
-                        <div className="relative">
-                            <div className="absolute -top-12 -right-12 w-64 h-64 opacity-5 pointer-events-none z-0 rotate-12">
-                                <img src="/logos/1_official_highres.png" alt="" className="w-full h-full object-contain" loading="lazy" decoding="async" />
+                    <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                        {home.hero.stats.map((stat, i) => (
+                            <div key={i} className="py-12 flex flex-col items-center justify-center text-center">
+                                <span className="text-5xl font-bold text-gray-900 mb-2">{stat.value}</span>
+                                <span className="text-sm font-semibold tracking-widest uppercase text-gray-500">{stat.label}</span>
                             </div>
-                            <img
-                                src={images.about.team}
-                                alt="Insights Office"
-                                className={`relative z-10 w-full h-[500px] object-cover rounded-2xl shadow-xl`}
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* 4. SERVICES GRID */}
-            <section className="py-24 bg-white relative overflow-hidden">
-                <div className="absolute bottom-0 left-0 w-80 h-80 opacity-[0.03] pointer-events-none -translate-x-1/2 translate-y-1/2 -rotate-12">
-                    <img src="/logos/2_official_highres.png" alt="" className="w-full h-full object-contain" />
+            {/* 3. ABOUT STATEMENT - Like "Committed to Your Health and Wellness" */}
+            <section className="py-24 bg-white">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                        From grassroots aggregation to global market linkage — we orchestrate transformation across the entire agri-food value chain.
+                    </h2>
+                    <Link to="/about-us" className="inline-block mt-8 text-brand-green font-bold uppercase tracking-widest text-sm border-b-2 border-brand-green pb-1 hover:text-brand-dark hover:border-brand-dark transition-colors">
+                        Learn About Our Mission
+                    </Link>
                 </div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <span className={`text-sm font-bold uppercase tracking-widest ${styles.accentColor} mb-4 block`}>Our Expertise</span>
-                        <h2 className={`text-3xl md:text-5xl ${styles.headingClass} text-gray-900 mb-6`}>
-                            {siteContent.services.overview}
-                        </h2>
+            </section>
+
+            {/* 4. THE POWER OF MILLETS - Clean grid like Agasthya's grain list */}
+            <section className="py-24 bg-[#FAFAFA]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Ancient Grains, Modern Systems</h2>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">Promoting the nutritional and ecological resilience of millets.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {siteContent.services.list.map((service, index) => (
-                            <Link
-                                key={service.id}
-                                to={`/services/${service.id}`}
-                                className={`group flex flex-col overflow-hidden rounded-2xl transition-all duration-300 ${styles.cardBg}`}
-                            >
-                                <div className="h-48 overflow-hidden relative">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                        {home.premiumMilletsHighlight.map((millet, i) => (
+                            <div key={i} className="group">
+                                <div className="aspect-[4/3] bg-gray-200 overflow-hidden mb-6">
                                     <img
-                                        src={images.services[service.id] || images.about.culture}
-                                        alt={service.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        src={premiumMilletsImages[millet.imgKey] || images.about.culture}
+                                        alt={millet.name}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                         loading="lazy"
-                                        decoding="async"
                                     />
-                                    <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors"></div>
-                                    <div className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm bg-brand-green/90">
-                                        {String(index + 1).padStart(2, '0')}
-                                    </div>
                                 </div>
-                                <div className="p-6 flex-grow">
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-green transition-colors">{service.title}</h3>
-                                    <p className="text-gray-600 leading-relaxed">{service.desc}</p>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* 5. STATS / IMPACT STRIP */}
-            <section className="py-16 bg-gradient-to-r from-brand-green to-brand-dark">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        {[
-                            { number: '6+', label: 'Service Verticals' },
-                            { number: '50+', label: 'Millet Varieties Covered' },
-                            { number: '10+', label: 'Institutional Partners' },
-                            { number: '5+', label: 'States Engaged' },
-                        ].map((stat, idx) => (
-                            <div key={idx} className="text-white">
-                                <div className="text-4xl md:text-5xl font-black mb-2 text-white">{stat.number}</div>
-                                <div className="text-sm uppercase tracking-wider text-gray-300 font-medium">{stat.label}</div>
+                                <h3 className="text-2xl font-bold text-gray-900 mb-2">{millet.name}</h3>
+                                <p className="text-gray-600 mb-4">{millet.subtitle}</p>
+                                <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 text-xs font-bold uppercase tracking-wide">
+                                    {millet.tag}
+                                </span>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
+
+            {/* 5. PROCESS & SERVICES - Left aligned text, alternating blocks */}
+            <section className="py-24 bg-white border-t border-gray-200">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="mb-20">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">Ecosystem Capabilities</h2>
+                        <p className="text-lg text-gray-600 max-w-3xl">{siteContent.services.overview}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center mb-24">
+                        <div className="order-2 lg:order-1">
+                            <h3 className="text-3xl font-bold text-gray-900 mb-6">Technology Commercialization</h3>
+                            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                                We bridge the gap between lab innovations and field applications. Through our robust R&D network and strategic partnerships, we validate and commercialize modern agricultural technologies.
+                            </p>
+                            <ul className="space-y-4">
+                                <li className="flex items-start">
+                                    <svg className="w-6 h-6 text-brand-green mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span className="text-gray-700">Intellectual property facilitation</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <svg className="w-6 h-6 text-brand-green mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span className="text-gray-700">Pilot testing and validation</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <svg className="w-6 h-6 text-brand-green mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span className="text-gray-700">Direct-to-market scaling</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="order-1 lg:order-2">
+                            <img src={images.services['tech-commercialization']} alt="Tech" className="w-full aspect-[4/5] object-cover" />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
+                        <div>
+                            <img src={images.about.team} alt="Capacity Building" className="w-full aspect-[4/5] object-cover" />
+                        </div>
+                        <div>
+                            <h3 className="text-3xl font-bold text-gray-900 mb-6">Capacity Building & Enterprise</h3>
+                            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                                Building the institutional and operational capacities of FPOs, rural entrepreneurs, and agri-startups to thrive in competitive markets.
+                            </p>
+                            <ul className="space-y-4">
+                                <li className="flex items-start">
+                                    <svg className="w-6 h-6 text-brand-green mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span className="text-gray-700">Startup Incubation Programs</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <svg className="w-6 h-6 text-brand-green mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span className="text-gray-700">FPO Governance Training</span>
+                                </li>
+                                <li className="flex items-start">
+                                    <svg className="w-6 h-6 text-brand-green mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span className="text-gray-700">Market orientation workshops</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 6. TRUSTED BY / CERTIFICATIONS LOGOS (Clean white banner) */}
+            <section className="py-20 bg-[#F4F4F4]">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h3 className="text-gray-500 font-bold tracking-widest uppercase text-sm mb-12">Institutional Partners & Affiliations</h3>
+                    <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 grayscale">
+                        {home.trustedPartners.map((partner, i) => (
+                            <div key={i} className="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+                                <span className="font-extrabold text-2xl tracking-tighter text-gray-800">{partner.title}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 7. ACRONYM - Very clean 4-column text grid */}
+            <section className="py-32 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-20">
+                        <h2 className="text-4xl font-bold text-gray-900 mb-4">{home.acronym.title}</h2>
+                        <p className="text-lg text-gray-500">{home.acronym.subtitle}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
+                        {home.acronym.letters.map((item, i) => (
+                            <div key={i}>
+                                <div className="text-5xl font-black text-gray-200 mb-4">{item.letter}</div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.word}</h3>
+                                <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. FOOTER CTA */}
+            <section className="py-32 bg-brand-green text-center">
+                <div className="max-w-3xl mx-auto px-4">
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">Ready to Build the Future of Food & Agriculture?</h2>
+                    <Link to="/contact" className="inline-block bg-white text-brand-green font-bold px-12 py-5 uppercase tracking-widest text-sm hover:bg-gray-100 transition-colors">
+                        Become a Partner
+                    </Link>
+                </div>
+            </section>
+
         </div>
     );
 };

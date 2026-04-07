@@ -7,46 +7,74 @@ const Template1Layout = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const [mobileSection, setMobileSection] = useState(null);
     const location = useLocation();
 
     useEffect(() => {
         setIsOpen(false);
         setActiveDropdown(null);
+        setMobileSection(null);
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const toggleMenu = () => setIsOpen(!isOpen);
+    const toggleMobile = (name) => setMobileSection(mobileSection === name ? null : name);
 
-    const toggleDropdown = (name) => {
-        setActiveDropdown(activeDropdown === name ? null : name);
+    // ── NAV STRUCTURE ─────────────────────────────────────────────
+    const navItems = [
+        {
+            name: 'Home',
+            href: '/',
+        },
+        {
+            name: 'About Us',
+            dropdown: [
+                { name: 'Overview', href: '/about-us' },
+                { name: 'Leadership', href: '/leadership' },
+                { name: 'Affiliations & Links', href: '/affiliations' },
+            ],
+        },
+        {
+            name: 'What We Do',
+            href: '/what-we-do',
+        },
+        {
+            name: 'Opportunities',
+            href: '/opportunities',
+        },
+        {
+            name: 'Work With Us',
+            dropdown: [
+                { name: 'Collaboration', href: '/work-with-us/collaboration' },
+                { name: 'Events & Campaigns', href: '/work-with-us/events' },
+                { name: 'Community Engagement', href: '/work-with-us/community' },
+            ],
+        },
+        {
+            name: 'About Millets',
+            href: '/about-millets',
+        },
+        {
+            name: 'News & Events',
+            href: '/news-events',
+        },
+    ];
+
+    const isActive = (href) => {
+        if (href === '/') return location.pathname === '/';
+        return location.pathname.startsWith(href);
     };
 
-    const mainNavLinks = [
-        { name: 'Know About Us', href: '/about' },
-        { name: 'People & Culture', href: '/culture' },
-    ];
-
-    const servicesLinks = siteContent.services.list.map(s => ({
-        name: s.title, href: `/services/${s.id}`
-    }));
-
-    const workWithUsLinks = [
-        { name: 'Careers', href: '/careers' },
-        { name: 'Collaborations', href: '/collaborations' },
-    ];
-
-    const extraNavLinks = [
-        { name: 'Our Works', href: '/works' },
-        { name: 'Insights', href: '/insights' },
-    ];
+    const dropdownActive = (item) => {
+        if (!item.dropdown) return false;
+        return item.dropdown.some(d => location.pathname.startsWith(d.href));
+    };
 
     return (
         <div className="min-h-screen flex flex-col font-sans text-gray-800 bg-white">
@@ -57,85 +85,58 @@ const Template1Layout = () => {
             <header className={`fixed w-full z-40 transition-all duration-300 ${scrolled ? 'bg-white/98 shadow-md backdrop-blur-md py-0 top-0.5' : 'bg-white py-0.5 top-0.5'}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
-                        {/* Logo - BIGGER & COLORFUL */}
+                        {/* Logo */}
                         <div className="flex-shrink-0 flex items-center">
                             <Link to="/" className="flex items-center py-1">
-                                <img src="/logos/official_logo.svg" alt="Insights Value Hub" className="h-20 md:h-32 w-auto object-contain transition-all duration-300" loading="lazy" decoding="async" />
+                                <img src="/logos/official_logo.svg" alt="Insights Value Hub" className="h-20 md:h-28 w-auto object-contain transition-all duration-300" loading="lazy" decoding="async" />
                             </Link>
                         </div>
 
                         {/* Desktop Navigation */}
-                        <nav className="hidden xl:flex items-center space-x-1">
-                            {mainNavLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    to={link.href}
-                                    className={`px-4 py-2 rounded-lg text-[14px] font-semibold transition-all duration-200 ${location.pathname === link.href ? 'text-white bg-brand-green shadow-md' : 'text-gray-700 hover:text-brand-green hover:bg-brand-green/5'}`}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-
-                            {/* Services Dropdown */}
-                            <div className="relative group">
-                                <button className="flex items-center px-4 py-2 rounded-lg text-[14px] font-semibold text-gray-700 hover:text-brand-green hover:bg-brand-green/5 transition-all focus:outline-none">
-                                    Services <ChevronDownIcon className="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform" />
-                                </button>
-                                <div className="absolute left-0 mt-1 w-72 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
-                                    <div className="bg-white rounded-xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
-                                        <div className="h-1 bg-gradient-to-r from-brand-green to-brand-orange"></div>
-                                        {servicesLinks.map((link) => (
-                                            <Link
-                                                key={link.name}
-                                                to={link.href}
-                                                className={`block px-5 py-3.5 text-sm font-medium transition-all border-b border-gray-50 last:border-0 ${location.pathname === link.href ? 'bg-brand-green/10 text-brand-green font-bold border-l-4 border-l-brand-green' : 'text-gray-700 hover:bg-brand-green/5 hover:text-brand-green hover:pl-7'}`}
-                                            >
-                                                {link.name}
-                                            </Link>
-                                        ))}
+                        <nav className="hidden xl:flex items-center space-x-0.5">
+                            {navItems.map((item) =>
+                                item.dropdown ? (
+                                    // Dropdown item
+                                    <div key={item.name} className="relative group">
+                                        <button className={`flex items-center px-3 py-2 rounded-lg text-[13px] font-semibold transition-all focus:outline-none ${dropdownActive(item) ? 'text-white bg-brand-green shadow-md' : 'text-gray-700 hover:text-brand-green hover:bg-brand-green/5'}`}>
+                                            {item.name}
+                                            <ChevronDownIcon className="ml-1 w-3.5 h-3.5 group-hover:rotate-180 transition-transform" />
+                                        </button>
+                                        <div className="absolute left-0 mt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
+                                            <div className="bg-white rounded-xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
+                                                <div className="h-1 bg-gradient-to-r from-brand-green to-brand-orange"></div>
+                                                {item.dropdown.map((link) => (
+                                                    <Link
+                                                        key={link.name}
+                                                        to={link.href}
+                                                        className={`block px-5 py-3.5 text-sm font-medium transition-all border-b border-gray-50 last:border-0 ${location.pathname === link.href ? 'bg-brand-green/10 text-brand-green font-bold border-l-4 border-l-brand-green' : 'text-gray-700 hover:bg-brand-green/5 hover:text-brand-green hover:pl-7'}`}
+                                                    >
+                                                        {link.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            {extraNavLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    to={link.href}
-                                    className={`px-4 py-2 rounded-lg text-[14px] font-semibold transition-all duration-200 ${location.pathname === link.href ? 'text-white bg-brand-green shadow-md' : 'text-gray-700 hover:text-brand-green hover:bg-brand-green/5'}`}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-
-                            {/* Work With Us Dropdown */}
-                            <div className="relative group">
-                                <button className="flex items-center px-4 py-2 rounded-lg text-[14px] font-semibold text-gray-700 hover:text-brand-green hover:bg-brand-green/5 transition-all focus:outline-none">
-                                    Work With Us <ChevronDownIcon className="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform" />
-                                </button>
-                                <div className="absolute right-0 mt-1 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
-                                    <div className="bg-white rounded-xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
-                                        <div className="h-1 bg-gradient-to-r from-brand-green to-brand-orange"></div>
-                                        {workWithUsLinks.map((link) => (
-                                            <Link
-                                                key={link.name}
-                                                to={link.href}
-                                                className={`block px-5 py-3.5 text-sm font-medium transition-all border-b border-gray-50 last:border-0 ${location.pathname === link.href ? 'bg-brand-green/10 text-brand-green font-bold' : 'text-gray-700 hover:bg-brand-green/5 hover:text-brand-green hover:pl-7'}`}
-                                            >
-                                                {link.name}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
+                                ) : (
+                                    // Direct link
+                                    <Link
+                                        key={item.name}
+                                        to={item.href}
+                                        className={`px-3 py-2 rounded-lg text-[13px] font-semibold transition-all duration-200 ${isActive(item.href) ? 'text-white bg-brand-green shadow-md' : 'text-gray-700 hover:text-brand-green hover:bg-brand-green/5'}`}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                )
+                            )}
                         </nav>
 
                         {/* Desktop CTA */}
                         <div className="hidden xl:flex items-center">
                             <Link
                                 to="/contact"
-                                className="px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-brand-green to-brand-dark text-white hover:shadow-lg hover:shadow-brand-green/30 transform hover:-translate-y-0.5"
+                                className="px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-brand-green to-brand-dark text-white hover:shadow-lg hover:shadow-brand-green/30 transform hover:-translate-y-0.5"
                             >
-                                Find Us At
+                                Contact Us
                             </Link>
                         </div>
 
@@ -157,76 +158,51 @@ const Template1Layout = () => {
                 </div>
 
                 {/* Mobile Navigation Menu */}
-                <div className={`xl:hidden absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 transition-all duration-300 origin-top overflow-hidden ${isOpen ? 'max-h-[85vh] opacity-100 overflow-y-auto' : 'max-h-0 opacity-0'}`}>
+                <div className={`xl:hidden absolute top-full left-0 w-full bg-white shadow-2xl border-t border-gray-100 transition-all duration-300 origin-top overflow-hidden ${isOpen ? 'max-h-[90vh] opacity-100 overflow-y-auto' : 'max-h-0 opacity-0'}`}>
                     <div className="px-4 pt-4 pb-6 space-y-1">
-                        {mainNavLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.href}
-                                className="block px-4 py-3 rounded-xl text-base font-medium text-gray-800 hover:text-brand-green hover:bg-brand-green/5"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-
-                        <div>
-                            <button
-                                onClick={() => toggleDropdown('services')}
-                                className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium text-gray-800 hover:text-brand-green hover:bg-brand-green/5 focus:outline-none"
-                            >
-                                Services
-                                <ChevronDownIcon className={`w-5 h-5 transition-transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
-                            </button>
-                            <div className={`pl-6 pr-3 space-y-1 overflow-hidden transition-all duration-300 ${activeDropdown === 'services' ? 'max-h-96 py-2' : 'max-h-0'}`}>
-                                {servicesLinks.map((link) => (
-                                    <Link key={link.name} to={link.href} className="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:text-brand-green hover:bg-brand-green/5">
-                                        {link.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-
-                        {extraNavLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                to={link.href}
-                                className="block px-4 py-3 rounded-xl text-base font-medium text-gray-800 hover:text-brand-green hover:bg-brand-green/5"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-
-                        <div>
-                            <button
-                                onClick={() => toggleDropdown('work')}
-                                className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium text-gray-800 hover:text-brand-green hover:bg-brand-green/5 focus:outline-none"
-                            >
-                                Work With Us
-                                <ChevronDownIcon className={`w-5 h-5 transition-transform ${activeDropdown === 'work' ? 'rotate-180' : ''}`} />
-                            </button>
-                            <div className={`pl-6 pr-3 space-y-1 overflow-hidden transition-all duration-300 ${activeDropdown === 'work' ? 'max-h-40 py-2' : 'max-h-0'}`}>
-                                {workWithUsLinks.map((link) => (
-                                    <Link key={link.name} to={link.href} className="block px-4 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:text-brand-green hover:bg-brand-green/5">
-                                        {link.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
+                        {navItems.map((item) =>
+                            item.dropdown ? (
+                                <div key={item.name}>
+                                    <button
+                                        onClick={() => toggleMobile(item.name)}
+                                        className="flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium text-gray-800 hover:text-brand-green hover:bg-brand-green/5 focus:outline-none"
+                                    >
+                                        {item.name}
+                                        <ChevronDownIcon className={`w-5 h-5 transition-transform ${mobileSection === item.name ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    <div className={`pl-6 pr-3 space-y-1 overflow-hidden transition-all duration-300 ${mobileSection === item.name ? 'max-h-96 py-2' : 'max-h-0'}`}>
+                                        {item.dropdown.map((link) => (
+                                            <Link key={link.name} to={link.href} className={`block px-4 py-2.5 rounded-lg text-sm font-medium hover:text-brand-green hover:bg-brand-green/5 ${location.pathname === link.href ? 'text-brand-green font-bold bg-brand-green/5' : 'text-gray-600'}`}>
+                                                {link.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <Link
+                                    key={item.name}
+                                    to={item.href}
+                                    className={`block px-4 py-3 rounded-xl text-base font-medium hover:text-brand-green hover:bg-brand-green/5 ${isActive(item.href) ? 'text-brand-green font-bold bg-brand-green/5' : 'text-gray-800'}`}
+                                >
+                                    {item.name}
+                                </Link>
+                            )
+                        )}
 
                         <div className="pt-4 border-t border-gray-100 mt-4">
                             <Link
                                 to="/contact"
                                 className="block w-full text-center bg-gradient-to-r from-brand-green to-brand-dark text-white px-4 py-3.5 rounded-xl font-bold text-base hover:shadow-lg transition-all"
                             >
-                                Find Us At
+                                Contact Us
                             </Link>
                         </div>
                     </div>
                 </div>
             </header>
 
-            {/* Main Content (padded for logo) */}
-            <main className="flex-grow pt-[100px] md:pt-[136px]">
+            {/* Main Content */}
+            <main className="flex-grow pt-[90px] md:pt-[117px]">
                 <Outlet />
             </main>
 
@@ -234,8 +210,9 @@ const Template1Layout = () => {
             <footer className="bg-gradient-to-b from-slate-900 to-slate-950 text-white pt-20 pb-8">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                        {/* Brand */}
                         <div className="lg:col-span-1">
-                            <img src="/logos/official_logo.svg" alt="Insights Value Hub" className="h-40 w-auto mb-6" loading="lazy" decoding="async" />
+                            <img src="/logos/official_logo.svg" alt="Insights Value Hub" className="h-32 w-auto mb-6" loading="lazy" decoding="async" />
                             <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
                                 {siteContent.global.tagline}
                             </p>
@@ -249,33 +226,44 @@ const Template1Layout = () => {
                             </div>
                         </div>
 
+                        {/* Quick Links */}
                         <div>
-                            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Organization</h4>
+                            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Navigation</h4>
                             <ul className="space-y-3">
-                                {mainNavLinks.map(link => (
-                                    <li key={link.name}>
-                                        <Link to={link.href} className="text-slate-400 hover:text-brand-green transition-colors text-sm">{link.name}</Link>
-                                    </li>
+                                {navItems.map(item => (
+                                    item.dropdown ? item.dropdown.map(link => (
+                                        <li key={link.href}>
+                                            <Link to={link.href} className="text-slate-400 hover:text-brand-green transition-colors text-sm">{link.name}</Link>
+                                        </li>
+                                    )) : (
+                                        <li key={item.href}>
+                                            <Link to={item.href} className="text-slate-400 hover:text-brand-green transition-colors text-sm">{item.name}</Link>
+                                        </li>
+                                    )
                                 ))}
-                                {workWithUsLinks.map(link => (
-                                    <li key={link.name}>
+                            </ul>
+                        </div>
+
+                        {/* About Millets */}
+                        <div>
+                            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">About Millets</h4>
+                            <ul className="space-y-3">
+                                {[
+                                    { name: 'What are Millets', href: '/about-millets#what' },
+                                    { name: 'Importance of Millets', href: '/about-millets#importance' },
+                                    { name: 'Millet Value Chain', href: '/about-millets#value-chain' },
+                                    { name: 'Millet Products', href: '/about-millets#products' },
+                                    { name: 'Policies & Initiatives', href: '/about-millets#policies' },
+                                    { name: 'Knowledge Resources', href: '/about-millets#knowledge' },
+                                ].map(link => (
+                                    <li key={link.href}>
                                         <Link to={link.href} className="text-slate-400 hover:text-brand-green transition-colors text-sm">{link.name}</Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
 
-                        <div>
-                            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Services</h4>
-                            <ul className="space-y-3">
-                                {servicesLinks.slice(0, 5).map(link => (
-                                    <li key={link.name}>
-                                        <Link to={link.href} className="text-slate-400 hover:text-brand-green transition-colors text-sm truncate block">{link.name}</Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
+                        {/* Contact */}
                         <div>
                             <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Contact Us</h4>
                             <ul className="space-y-4">
