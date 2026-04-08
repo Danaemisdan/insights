@@ -594,19 +594,19 @@ export const siteContent = {
     newsEvents: {
         intro: "Stay informed about the latest developments, events, and media coverage from INSIGHTS Value Hub.",
         news: [
-            { title: "INSIGHTS Value Hub Launches Operations in Hyderabad", date: "March 2024", category: "News", excerpt: "INSIGHTS Value Hub officially commences its operations as a platform for agri-food value chain innovation, incubation, and advisory.", img: "building" },
-            { title: "Millet Ecosystem Conclave 2024 — Key Takeaways", date: "February 2024", category: "News", excerpt: "Over 200 stakeholders participated in the inaugural Millet Ecosystem Conclave, co-organized by INSIGHTS Value Hub.", img: "team" },
-            { title: "Partnership Signed with Leading Research Institution", date: "January 2024", category: "News", excerpt: "INSIGHTS Value Hub formalizes a strategic partnership for joint research and capacity building in the millet sector.", img: "meeting" },
+            { title: "INSIGHTS Value Hub Launches Operations in Hyderabad", date: "March 2026", category: "News", excerpt: "INSIGHTS Value Hub officially commences its operations as a platform for agri-food value chain innovation, incubation, and advisory.", img: "article4" },
+            { title: "Millet Ecosystem Conclave 2026 — Key Takeaways", date: "February 2026", category: "News", excerpt: "Over 200 stakeholders participated in the inaugural Millet Ecosystem Conclave, co-organized by INSIGHTS Value Hub.", img: "meeting" },
+            { title: "Partnership Signed with Leading Research Institution", date: "January 2026", category: "News", excerpt: "INSIGHTS Value Hub formalizes a strategic partnership for joint research and capacity building in the millet sector.", img: "culture" },
         ],
         eventHighlights: [
-            { title: "Millet Value Chain Workshop – Hyderabad", date: "March 2024", type: "Workshop", desc: "A 2-day intensive workshop on millet value chain mapping and market development, attended by 60+ participants.", img: "article1" },
-            { title: "International Year of Millets — Closing Event", date: "December 2023", type: "Conference", desc: "INSIGHTS participated in the IYM closing event, presenting case studies from India's millet ecosystem.", img: "article2" },
-            { title: "FPO Capacity Building Program — Batch 1", date: "November 2023", type: "Training", desc: "Inaugural batch of 30 FPO representatives underwent training in millet value chain management at our Hyderabad centre.", img: "article3" },
+            { title: "Millet Value Chain Workshop – Hyderabad", date: "March 2026", type: "Workshop", desc: "A 2-day intensive workshop on millet value chain mapping and market development, attended by 60+ participants.", img: "article1" },
+            { title: "International Year of Millets — Closing Event", date: "December 2025", type: "Conference", desc: "INSIGHTS participated in the IYM closing event, presenting case studies from India's millet ecosystem.", img: "article2" },
+            { title: "FPO Capacity Building Program — Batch 1", date: "November 2025", type: "Training", desc: "Inaugural batch of 30 FPO representatives underwent training in millet value chain management at our Hyderabad centre.", img: "article3" },
         ],
         mediaCoverage: [
-            { outlet: "The Hindu Business Line", headline: "Millets are the future of food security, says INSIGHTS Value Hub", date: "March 2024", url: "#" },
-            { outlet: "Financial Express – Agri", headline: "New platform to support millet entrepreneurs in South India", date: "February 2024", url: "#" },
-            { outlet: "Down to Earth", headline: "From farm to shelf: How INSIGHTS is transforming the millet value chain", date: "January 2024", url: "#" },
+            { outlet: "The Hindu Business Line", headline: "Millets are the future of food security, says INSIGHTS Value Hub", date: "March 2026", url: "#" },
+            { outlet: "Financial Express – Agri", headline: "New platform to support millet entrepreneurs in South India", date: "February 2026", url: "#" },
+            { outlet: "Down to Earth", headline: "From farm to shelf: How INSIGHTS is transforming the millet value chain", date: "January 2026", url: "#" },
         ],
         gallery: {
             intro: "Glimpses from our events, programs, and field activities.",
