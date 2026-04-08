@@ -84,7 +84,7 @@ export const siteContent = {
                 { name: "To be updated", designation: "Member", detail: "Details to be published shortly" },
             ],
             management: [
-                { name: "Mr. Veeresh", designation: "Managing Director", dept: "Leadership", email: "reachout@insightsvaluehub.com" },
+                { name: "Mr. Ajay", designation: "Managing Director", dept: "Leadership", email: "reachout@insightsvaluehub.com" },
                 { name: "Mr. Paul Hamsa", designation: "Director – Operations", dept: "Operations & Strategy", email: "reachout@insightsvaluehub.com" },
             ],
             technical: [
