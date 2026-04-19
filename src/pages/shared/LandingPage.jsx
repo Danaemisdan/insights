@@ -8,10 +8,9 @@ const LandingPage = () => {
     const [currentHeroImage, setCurrentHeroImage] = useState(0);
 
     const heroImages = [
-        images.services['value-chain'], 
         "/assets/photos/drive/Millet with farmers/farmer with millets.png",
-        images.about.meeting,
-        images.drive.techTransfer,
+        images.works.project1,
+        images.works.project2,
     ];
 
     useEffect(() => {
@@ -157,7 +156,7 @@ const LandingPage = () => {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
                         <div>
-                            <img src={images.drive.capacityBuilding} alt="Capacity Building" className="w-full aspect-[4/5] object-cover rounded-3xl" />
+                            <img src={images.drive.capacityBuilding} alt="Capacity Building" className="w-full aspect-[4/5] object-contain bg-white rounded-3xl" />
                         </div>
                         <div>
                             <h3 className="text-3xl font-bold text-gray-900 mb-6">Capacity Building & Enterprise</h3>
