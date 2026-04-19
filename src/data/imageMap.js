@@ -6,9 +6,9 @@ export const images = {
     drive: {
         techTransfer: "/assets/photos/drive/about us image/Technology transfer.png",
         aboutUs: "/assets/photos/drive/about us image/about us.jpeg",
-        capacityBuilding: "/assets/photos/drive/about us image/capacity building.jpeg",
+        capacityBuilding: "/assets/photos/drive/about us image/capacity building-cropped.jpeg",
         nutrihubBuilding: "/assets/photos/drive/about us image/in place nutrihub building.png",
-        ourPurpose: "/assets/photos/drive/about us image/our purpose.jpeg",
+        ourPurpose: "/assets/photos/drive/about us image/our purpose-cropped.jpeg",
     },
     about: {
         team: "/assets/photos/office building blue sky copy.jpg",

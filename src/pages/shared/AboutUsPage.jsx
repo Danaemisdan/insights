@@ -66,9 +66,8 @@ const AboutUsPage = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="flex items-center justify-center overflow-hidden rounded-3xl shadow-lg relative h-[450px]">
-                            {/* The physical image contains the whole mockup page. We use CSS object-cover & object-right to visually 'crop out' the left text half and only display the circular graphic. */}
-                            <img src={images.drive.ourPurpose} alt="Our Purpose Ecosystem" className="absolute right-0 h-full w-[200%] object-cover object-right rounded-3xl" loading="lazy" />
+                        <div className="flex items-center justify-center">
+                            <img src={images.drive.ourPurpose} alt="Our Purpose Ecosystem" className="w-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-2xl" loading="lazy" />
                         </div>
                     </div>
                 </div>

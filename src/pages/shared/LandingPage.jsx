@@ -155,9 +155,8 @@ const LandingPage = () => {
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
-                        <div className="overflow-hidden rounded-3xl relative h-[400px]">
-                            {/* The physical image contains the whole mockup page. We use CSS object-cover & object-left to visually crop out the right text half and only display the 6-icon graphic grid. */}
-                            <img src={images.drive.capacityBuilding} alt="Capacity Building" className="absolute left-0 h-full w-[150%] object-cover object-left rounded-3xl" />
+                        <div className="flex items-center justify-center p-2 bg-white rounded-3xl">
+                            <img src={images.drive.capacityBuilding} alt="Capacity Building Icons" className="w-full object-contain hover:scale-105 transition-transform duration-500" />
                         </div>
                         <div>
                             <h3 className="text-3xl font-bold text-gray-900 mb-6">Capacity Building & Enterprise</h3>
