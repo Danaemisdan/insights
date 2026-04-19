@@ -8,11 +8,10 @@ const LandingPage = () => {
     const [currentHeroImage, setCurrentHeroImage] = useState(0);
 
     const heroImages = [
-        images.hero.nutrihub,
         images.services['value-chain'], 
-        images.works.project1,
+        "/assets/photos/drive/Millet with farmers/farmer with millets.png",
         images.about.meeting,
-        images.services['tech-commercialization'],
+        images.drive.techTransfer,
     ];
 
     useEffect(() => {
@@ -152,13 +151,13 @@ const LandingPage = () => {
                             </ul>
                         </div>
                         <div className="order-1 lg:order-2">
-                            <img src={images.services['tech-commercialization']} alt="Tech" className="w-full aspect-[4/5] object-cover" />
+                            <img src={images.drive.techTransfer} alt="Tech" className="w-full aspect-[4/5] object-contain p-4 bg-gray-50 border border-gray-100 rounded-3xl" />
                         </div>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
                         <div>
-                            <img src={images.about.team} alt="Capacity Building" className="w-full aspect-[4/5] object-cover" />
+                            <img src={images.drive.capacityBuilding} alt="Capacity Building" className="w-full aspect-[4/5] object-cover rounded-3xl" />
                         </div>
                         <div>
                             <h3 className="text-3xl font-bold text-gray-900 mb-6">Capacity Building & Enterprise</h3>
@@ -193,6 +192,28 @@ const LandingPage = () => {
                             <div key={i} className="flex flex-col items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
                                 <span className="font-extrabold text-2xl tracking-tighter text-gray-800">{partner.title}</span>
                             </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* 6.5 ECOSYSTEM PLATFORMS - Moved from Affiliations page */}
+            <section className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-14">
+                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Ecosystem</span>
+                        <h2 className="text-3xl font-extrabold text-gray-900">Related Platforms</h2>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-6">
+                        {siteContent.aboutUs.affiliations.relatedLinks.map((link, i) => (
+                            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
+                                className="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-brand-green/30 transition-all group flex-1 min-w-[250px] max-w-[300px]">
+                                <div className="w-10 h-10 rounded-xl bg-brand-green/10 text-brand-green flex items-center justify-center mb-4 group-hover:bg-brand-green group-hover:text-white transition-all">
+                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                </div>
+                                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-brand-green transition-colors">{link.name}</h3>
+                                <p className="text-sm text-gray-500 leading-relaxed">{link.desc}</p>
+                            </a>
                         ))}
                     </div>
                 </div>

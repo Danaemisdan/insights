@@ -94,10 +94,10 @@ export const siteContent = {
                 tag: "Expanding Collaborations",
                 text: "Our advisory network spans across governments, research institutions, development agencies, and industry leaders. Detailed profiles of our advisors and strategic experts will be featured soon.",
                 advisors: [
-                    { name: "To be announced", domain: "Agriculture & Food Policy" },
-                    { name: "To be announced", domain: "Nutrition Science" },
-                    { name: "To be announced", domain: "Value Chain & Enterprise" },
-                    { name: "To be announced", domain: "International Development" },
+                    { name: "Dr B Dayakar Rao", domain: "Agriculture & Food Policy" },
+                    { name: "Dr Ashok Dalwai", domain: "Nutrition Science" },
+                    { name: "Mr Sai Krishna Popuri", domain: "Value Chain & Enterprise" },
+                    { name: "Dr Veeresh", domain: "International Development" },
                 ]
             }
         },
@@ -585,9 +585,10 @@ export const siteContent = {
             ],
             externalLinks: [
                 { name: "FAO Millets Page", url: "https://www.fao.org/home/en", desc: "Food and Agriculture Organization global millet resources" },
-                { name: "ICAR-ICRISAT Millet Research", url: "#", desc: "Indian and international cereal/millet research" },
-                { name: "Agasthya Superfoods", url: "https://www.agasthyasuperfoods.com/", desc: "Premium millet product innovation platform" },
-                { name: "National Millet Mission", url: "#", desc: "Government of India's millet promotion program" },
+                { name: "ICRISAT Millet Research", url: "https://www.icrisat.org/", desc: "International Crops Research Institute for the Semi-Arid Tropics" },
+                { name: "Project Knowledge Resources", url: "https://docs.google.com/document/d/17WnXu0Zt_qdSoMCw_eUyhPvRDH2svIrW/edit?usp=sharing&ouid=101382748103979298267&rtpof=true&sd=true", desc: "Comprehensive documentation and curated reading materials" },
+                { name: "ICAR - IIMR", url: "https://www.millets.res.in/", desc: "Indian Institute of Millets Research" },
+                { name: "National Millet Mission", url: "https://agricoop.nic.in/", desc: "Government of India's millet promotion program" },
             ]
         }
     },

@@ -13,7 +13,7 @@ const AboutUsPage = () => {
             {/* Hero */}
             <div className="relative min-h-[55vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={images.about.team} alt="About INSIGHTS" className="w-full h-full object-cover" loading="eager" />
+                    <img src={images.drive.aboutUs} alt="About INSIGHTS" className="w-full h-full object-cover" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent" />
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24">
@@ -66,10 +66,8 @@ const AboutUsPage = () => {
                                 </Link>
                             </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <img src={images.about.building} alt="Building" className="w-full h-64 object-cover rounded-2xl shadow-lg" loading="lazy" />
-                            <img src={images.about.meeting} alt="Meeting" className="w-full h-64 object-cover rounded-2xl shadow-lg mt-8" loading="lazy" />
-                            <img src={images.about.culture} alt="Culture" className="w-full h-64 object-cover rounded-2xl shadow-lg col-span-2" loading="lazy" />
+                        <div className="flex items-center justify-center">
+                            <img src={images.drive.ourPurpose} alt="Our Purpose" className="w-full max-h-[500px] object-cover rounded-3xl shadow-lg" loading="lazy" />
                         </div>
                     </div>
                 </div>

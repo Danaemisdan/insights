@@ -3,6 +3,13 @@ export const images = {
         vibrant: "/assets/photos/banner-24-2-1172x600.jpg",
         nutrihub: "/assets/photos/_DSC1819.JPG",
     },
+    drive: {
+        techTransfer: "/assets/photos/drive/about us image/Technology transfer.png",
+        aboutUs: "/assets/photos/drive/about us image/about us.jpeg",
+        capacityBuilding: "/assets/photos/drive/about us image/capacity building.jpeg",
+        nutrihubBuilding: "/assets/photos/drive/about us image/in place nutrihub building.png",
+        ourPurpose: "/assets/photos/drive/about us image/our purpose.jpeg",
+    },
     about: {
         team: "/assets/photos/office building blue sky copy.jpg",
         culture: "/assets/photos/happy farmer with barnyard millet copy.jpg",
