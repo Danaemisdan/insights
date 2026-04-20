@@ -2,8 +2,8 @@ export const siteContent = {
     global: {
         brandName: "INSIGHTS Value Hub",
         contactEmail: "reachout@insightsvaluehub.com",
-        contactPhone: "+91-XXXXXXXXXX",
-        officeLocation: "Hyderabad, Telangana, India",
+        contactPhone: "+91 99494 71398, +91 9916059596",
+        officeLocation: "SY: 11 Kondapur, Serilingampally, Hyderabad 500084\nTelangana India",
         tagline: "Intelligence for Nutrition & agri-food Systems, guided by Innovation, Governance, Health, Technology, and Strategy",
     },
     home: {
