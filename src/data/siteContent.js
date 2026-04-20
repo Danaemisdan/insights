@@ -94,8 +94,8 @@ export const siteContent = {
                 tag: "Expanding Collaborations",
                 text: "Our advisory network spans across governments, research institutions, development agencies, and industry leaders. Detailed profiles of our advisors and strategic experts will be featured soon.",
                 advisors: [
-                    { name: "Dr B Dayakar Rao", domain: "Agriculture & Food Policy" },
-                    { name: "Dr Ashok Dalwai", domain: "Nutrition Science" },
+                    { name: "Dr B Dayakar Rao", domain: "Value Chain Strategist" },
+                    { name: "Dr Ashok Dalwai, IAS", domain: "Agriculture & Food Policy" },
                     { name: "Mr Sai Krishna Popuri", domain: "Value Chain & Enterprise" },
                     { name: "Dr Veeresh", domain: "International Development" },
                 ]

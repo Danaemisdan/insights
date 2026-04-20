@@ -84,26 +84,6 @@ const LeadershipPage = () => {
                             </div>
                         ))}
                     </div>
-
-                    {/* Technical Team */}
-                    <div className="text-center mb-10">
-                        <h3 className="text-2xl font-extrabold text-gray-900">Technical Team</h3>
-                        <p className="text-gray-500 mt-2">A multidisciplinary team with experience in value chain, food systems, and innovation management.</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {ld.technical.map((member, i) => (
-                            <div key={i} className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-brand-green/30 hover:shadow-md transition-all flex items-center gap-4">
-                                <div className="w-14 h-14 rounded-xl bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 font-bold text-lg">
-                                    {member.name.charAt(0)}
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-gray-900">{member.name}</h4>
-                                    <p className="text-sm text-brand-green">{member.designation}</p>
-                                    <p className="text-xs text-gray-400">{member.dept}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </section>
 
