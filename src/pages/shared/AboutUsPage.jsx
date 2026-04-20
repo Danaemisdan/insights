@@ -13,7 +13,7 @@ const AboutUsPage = () => {
             {/* Hero */}
             <div className="relative min-h-[55vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src="/assets/photos/drive/Millet with farmers/farmer with millets.png" alt="About INSIGHTS" className="w-full h-full object-cover" loading="eager" />
+                    <img src="/assets/photos/about-us-hero-new.png" alt="About INSIGHTS" className="w-full h-full object-cover" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent" />
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24">
