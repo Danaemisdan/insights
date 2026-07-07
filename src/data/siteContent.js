@@ -78,26 +78,27 @@ export const siteContent = {
             strategicRole: "INSIGHTS Value Hub plays a strategic catalytic role in food systems transformation — bridging the gap between research and market, between policy intent and implementation, and between traditional knowledge and modern innovation. We anchor agri-food ecosystem development with a focus on millets as a climate-resilient, nutrition-dense crop of the future.",
         },
         leadership: {
-            governingBody: [
-                { name: "To be updated", designation: "Chairperson", detail: "Details to be published shortly" },
-                { name: "To be updated", designation: "Vice Chairperson", detail: "Details to be published shortly" },
-                { name: "To be updated", designation: "Member", detail: "Details to be published shortly" },
+            leadership: [
+                { name: "Dr B. Dayakar Rao", designation: "Chairman and Managing Director, IVH" },
+                { name: "Paul Ratan Kumar Hamsa", designation: "Chief Executive Officer and Director, IVH" },
+                { name: "Megha Kamareddi", designation: "Director, IVH" },
             ],
             management: [
-                { name: "Mr. Ajay", designation: "Managing Director", dept: "Leadership", email: "reachout@insightsvaluehub.com" },
-                { name: "Mr. Paul Hamsa", designation: "Director – Operations", dept: "Operations & Strategy", email: "reachout@insightsvaluehub.com" },
-            ],
-            technical: [
-                { name: "Team profiles", designation: "To be updated", dept: "Technical Division", email: "reachout@insightsvaluehub.com" },
+                { name: "Dr B. Dayakar Rao", designation: "Chairman and Managing Director" },
+                { name: "Paul Ratan Kumar Hamsa", designation: "Chief Executive Officer and Director" },
+                { name: "Dr Veeresh S Wali", designation: "Chief Technical Officer" },
+                { name: "John Shreedhar Kumar J", designation: "Resident Project Manager" },
+                { name: "Pranith Kumar Reddy S V", designation: "Business Development Manager" },
             ],
             advisory: {
                 tag: "Expanding Collaborations",
                 text: "Our advisory network spans across governments, research institutions, development agencies, and industry leaders. Detailed profiles of our advisors and strategic experts will be featured soon.",
                 advisors: [
-                    { name: "Dr B Dayakar Rao", domain: "Value Chain Strategist" },
                     { name: "Dr Ashok Dalwai, IAS", domain: "Agriculture & Food Policy" },
                     { name: "Mr Sai Krishna Popuri", domain: "Value Chain & Enterprise" },
-                    { name: "Dr Veeresh", domain: "International Development" },
+                    { name: "Ravi Varma Uppalapati", domain: "Chief Branding Officer, USA" },
+                    { name: "Ajay Anand Ganji", domain: "Chief Growth Officer, USA" },
+                    { name: "Rose Bedulla", domain: "Chief Innovation Officer, Canada" },
                 ]
             }
         },
