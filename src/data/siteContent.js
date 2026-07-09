@@ -61,8 +61,8 @@ export const siteContent = {
             intro: "INSIGHTS Value Hub is an implementation-focused platform working across value chain design, enterprise incubation, processing infrastructure, and strategic advisory. We operate at the intersection of agriculture, food systems, innovation management, and institutional partnerships.",
             purpose: "We build structured ecosystems that connect research, business, infrastructure, markets, and policy. Our work supports governments, institutions, private enterprises, and start-ups in creating viable and scalable value chains.",
             establishment: {
-                year: "2023",
-                legalStructure: "Section 8 Company (Not-for-Profit)",
+                year: "2026",
+                legalStructure: "Private Limited Company",
                 registration: "Details to be updated",
                 implementingAuthority: "To be published shortly",
             },

@@ -15,6 +15,7 @@ import WorkCommunityPage from './pages/shared/WorkCommunityPage';
 import AboutMilletsPage from './pages/shared/AboutMilletsPage';
 import NewsEventsPage from './pages/shared/NewsEventsPage';
 import ContactPage from './pages/shared/ContactPage';
+import OurPartnersPage from './pages/shared/OurPartnersPage';
 
 // Kept for backward compat
 import ServicePage from './pages/shared/ServicePage';
@@ -61,6 +62,9 @@ const App = () => {
 
                     {/* News & Events */}
                     <Route path="news-events" element={<NewsEventsPage />} />
+
+                    {/* Partners */}
+                    <Route path="partners" element={<OurPartnersPage />} />
 
                     {/* Contact */}
                     <Route path="contact" element={<ContactPage />} />

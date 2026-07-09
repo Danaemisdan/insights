@@ -61,6 +61,10 @@ const Template1Layout = () => {
             href: '/about-millets',
         },
         {
+            name: 'Our Partners',
+            href: '/partners',
+        },
+        {
             name: 'News & Events',
             href: '/news-events',
         },
