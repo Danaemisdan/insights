@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { siteContent } from '../data/siteContent';
+import EditableImage from '../components/EditableImage';
+import EditableText from '../components/EditableText';
+import EditableLink from '../components/EditableLink';
 
 const Template1Layout = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -92,7 +95,7 @@ const Template1Layout = () => {
                         {/* Logo */}
                         <div className="flex-shrink-0 flex items-center">
                             <Link to="/" className="flex items-center py-1">
-                                <img src="/logos/official_logo.svg" alt="Insights Value Hub" className="h-20 md:h-28 w-auto object-contain transition-all duration-300" loading="lazy" decoding="async" />
+                                <EditableImage contentKey="header-logo" defaultSrc="/logos/official_logo.svg" alt="Insights Value Hub" className="h-20 md:h-28 w-auto object-contain transition-all duration-300" />
                             </Link>
                         </div>
 
@@ -103,45 +106,45 @@ const Template1Layout = () => {
                                     // Dropdown item
                                     <div key={item.name} className="relative group">
                                         <button className={`flex items-center px-3 py-2 rounded-lg text-[13px] font-semibold transition-all focus:outline-none ${dropdownActive(item) ? 'text-white bg-brand-green shadow-md' : 'text-gray-700 hover:text-brand-green hover:bg-brand-green/5'}`}>
-                                            {item.name}
+                                            <EditableText contentKey={`nav-${item.name.replace(/\s+/g, '-')}`} defaultText={item.name} as="span" />
                                             <ChevronDownIcon className="ml-1 w-3.5 h-3.5 group-hover:rotate-180 transition-transform" />
                                         </button>
                                         <div className="absolute left-0 mt-1 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pt-2">
                                             <div className="bg-white rounded-xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
                                                 <div className="h-1 bg-gradient-to-r from-brand-green to-brand-orange"></div>
                                                 {item.dropdown.map((link) => (
-                                                    <Link
+                                                    <EditableLink
                                                         key={link.name}
+                                                        contentKey={`nav-${link.name.replace(/\s+/g, '-')}`}
                                                         to={link.href}
+                                                        defaultText={link.name}
                                                         className={`block px-5 py-3.5 text-sm font-medium transition-all border-b border-gray-50 last:border-0 ${location.pathname === link.href ? 'bg-brand-green/10 text-brand-green font-bold border-l-4 border-l-brand-green' : 'text-gray-700 hover:bg-brand-green/5 hover:text-brand-green hover:pl-7'}`}
-                                                    >
-                                                        {link.name}
-                                                    </Link>
+                                                    />
                                                 ))}
                                             </div>
                                         </div>
                                     </div>
                                 ) : (
                                     // Direct link
-                                    <Link
+                                    <EditableLink
                                         key={item.name}
+                                        contentKey={`nav-${item.name.replace(/\s+/g, '-')}`}
                                         to={item.href}
+                                        defaultText={item.name}
                                         className={`px-3 py-2 rounded-lg text-[13px] font-semibold transition-all duration-200 ${isActive(item.href) ? 'text-white bg-brand-green shadow-md' : 'text-gray-700 hover:text-brand-green hover:bg-brand-green/5'}`}
-                                    >
-                                        {item.name}
-                                    </Link>
+                                    />
                                 )
                             )}
                         </nav>
 
                         {/* Desktop CTA */}
                         <div className="hidden xl:flex items-center">
-                            <Link
+                            <EditableLink
+                                contentKey="nav-cta"
                                 to="/contact"
+                                defaultText="Contact Us"
                                 className="px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 bg-gradient-to-r from-brand-green to-brand-dark text-white hover:shadow-lg hover:shadow-brand-green/30 transform hover:-translate-y-0.5"
-                            >
-                                Contact Us
-                            </Link>
+                            />
                         </div>
 
                         {/* Mobile menu button */}

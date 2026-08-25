@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
+import EditableText from '../../components/EditableText';
+import EditableImage from '../../components/EditableImage';
+import EditableLink from '../../components/EditableLink';
 
 const evts = siteContent.workWithUs.events;
 
@@ -22,16 +25,14 @@ const WorkEventsPage = () => {
             {/* Hero */}
             <div className="relative min-h-[45vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={images.about.culture} alt="Events & Campaigns" className="w-full h-full object-cover" loading="eager" />
+                    <EditableImage contentKey="work-events-hero-bg" defaultSrc={images.about.culture} alt="Events & Campaigns" className="w-full h-full object-cover" loading="eager" />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent" />
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
                     <div className="max-w-3xl">
-                        <span className="text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange">Work With Us</span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-tight">
-                            Events & Campaigns
-                        </h1>
-                        <p className="text-xl text-gray-200 font-light leading-relaxed">{evts.intro}</p>
+                        <EditableText as="span" contentKey="work-events-hero-tag" defaultText="Work With Us" className="text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange" />
+                        <EditableText as="h1" contentKey="work-events-hero-title" defaultText="Events & Campaigns" className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-tight block" />
+                        <EditableText as="p" contentKey="work-events-hero-intro" defaultText={evts.intro} className="text-xl text-gray-200 font-light leading-relaxed block" />
                     </div>
                 </div>
             </div>
@@ -40,8 +41,8 @@ const WorkEventsPage = () => {
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-14">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Our Programs</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Event Categories</h2>
+                        <EditableText as="span" contentKey="work-events-programs-tag" defaultText="Our Programs" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="work-events-programs-title" defaultText="Event Categories" className="text-3xl md:text-4xl font-extrabold text-gray-900 block" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {/* Left: Category List */}
@@ -52,7 +53,7 @@ const WorkEventsPage = () => {
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${activeIdx === i ? 'bg-white/20' : 'bg-brand-green/10 text-brand-green'}`}>
                                         {iconMap[cat.icon]}
                                     </div>
-                                    <span className="font-semibold">{cat.title}</span>
+                                    <EditableText as="span" contentKey={`work-events-cat-title-${i}`} defaultText={cat.title} className="font-semibold block" />
                                 </button>
                             ))}
                         </div>
@@ -62,15 +63,15 @@ const WorkEventsPage = () => {
                             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-green to-brand-dark flex items-center justify-center text-white mb-6">
                                 {iconMap[active.icon]}
                             </div>
-                            <h3 className="text-2xl font-extrabold text-gray-900 mb-4">{active.title}</h3>
-                            <p className="text-lg text-gray-600 leading-relaxed mb-8">{active.desc}</p>
+                            <EditableText as="h3" contentKey={`work-events-active-title-${activeIdx}`} defaultText={active.title} className="text-2xl font-extrabold text-gray-900 mb-4 block" />
+                            <EditableText as="p" contentKey={`work-events-active-desc-${activeIdx}`} defaultText={active.desc} className="text-lg text-gray-600 leading-relaxed mb-8 block" />
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 {active.items.map((item, j) => (
                                     <div key={j} className="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                                         <div className="w-6 h-6 rounded-lg bg-brand-green text-white flex items-center justify-center flex-shrink-0">
                                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-gray-700 font-medium text-sm">{item}</span>
+                                        <EditableText as="span" contentKey={`work-events-active-item-${activeIdx}-${j}`} defaultText={item} className="text-gray-700 font-medium text-sm block" />
                                     </div>
                                 ))}
                             </div>
@@ -89,7 +90,7 @@ const WorkEventsPage = () => {
                                 <div className={`w-12 h-12 rounded-xl mx-auto flex items-center justify-center mb-3 ${activeIdx === i ? 'bg-white/20 text-white' : 'bg-brand-green/10 text-brand-green'}`}>
                                     {iconMap[cat.icon]}
                                 </div>
-                                <p className={`text-sm font-bold leading-tight ${activeIdx === i ? 'text-white' : 'text-gray-800'}`}>{cat.title}</p>
+                                <EditableText as="p" contentKey={`work-events-strip-title-${i}`} defaultText={cat.title} className={`text-sm font-bold leading-tight ${activeIdx === i ? 'text-white' : 'text-gray-800'} block`} />
                             </div>
                         ))}
                     </div>
@@ -99,11 +100,9 @@ const WorkEventsPage = () => {
             {/* CTA */}
             <section className="py-16 bg-gradient-to-r from-brand-green to-brand-dark">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-                    <h2 className="text-3xl font-extrabold mb-4">Host or Co-organize an Event with Us</h2>
-                    <p className="text-gray-200 mb-8">Partner with INSIGHTS to design and deliver impactful events for the agri-food ecosystem.</p>
-                    <Link to="/contact" className="inline-flex items-center px-10 py-4 rounded-full bg-white text-brand-green font-bold hover:bg-brand-dark hover:text-white transition-all">
-                        Get In Touch
-                    </Link>
+                    <EditableText as="h2" contentKey="work-events-cta-title" defaultText="Host or Co-organize an Event with Us" className="text-3xl font-extrabold mb-4 block" />
+                    <EditableText as="p" contentKey="work-events-cta-desc" defaultText="Partner with INSIGHTS to design and deliver impactful events for the agri-food ecosystem." className="text-gray-200 mb-8 block" />
+                    <EditableLink contentKey="work-events-cta-link" to="/contact" defaultText="Get In Touch" className="inline-flex items-center px-10 py-4 rounded-full bg-white text-brand-green font-bold hover:bg-brand-dark hover:text-white transition-all" />
                 </div>
             </section>
         </div>

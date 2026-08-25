@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
+import EditableText from '../../components/EditableText';
+import EditableImage from '../../components/EditableImage';
+import EditableLink from '../../components/EditableLink';
 
 const am = siteContent.aboutMillets;
 
@@ -33,24 +36,20 @@ const AboutMilletsPage = () => {
             {/* Hero */}
             <div className="relative min-h-[55vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={images.millets.pearl} alt="About Millets" className="w-full h-full object-cover" loading="eager" />
+                    <EditableImage contentKey="am-hero-bg" defaultSrc={images.millets.pearl} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent" />
                 </div>
                 {/* Floating vectors */}
                 <div className="absolute right-10 bottom-10 flex gap-4 opacity-20 pointer-events-none">
                     {[images.vectors.millet01, images.vectors.pearl, images.vectors.foxtail].map((v, i) => (
-                        <img key={i} src={v} alt="" className="h-24 w-auto object-contain" />
+                        <EditableImage key={i} contentKey={`am-hero-vec-${i}`} defaultSrc={v} className="h-24 w-auto object-contain" />
                     ))}
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-24">
                     <div className="max-w-3xl">
-                        <span className="text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange">INSIGHTS Value Hub</span>
-                        <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 text-white leading-[1.1]">
-                            {am.hero.headline}
-                        </h1>
-                        <p className="text-xl text-gray-200 font-light leading-relaxed max-w-2xl">
-                            {am.hero.subline}
-                        </p>
+                        <EditableText as="span" contentKey="am-hero-tag" defaultText="INSIGHTS Value Hub" className="text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange block" />
+                        <EditableText as="h1" contentKey="am-hero-title" defaultText={am.hero.headline} className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 text-white leading-[1.1] block" />
+                        <EditableText as="p" contentKey="am-hero-subline" defaultText={am.hero.subline} className="text-xl text-gray-200 font-light leading-relaxed max-w-2xl block" />
                     </div>
                 </div>
             </div>
@@ -60,10 +59,11 @@ const AboutMilletsPage = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
                         {sectionTabs.map(tab => (
-                            <a key={tab.id} href={`#${tab.id}`} onClick={() => setActiveSection(tab.id)}
-                                className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${activeSection === tab.id ? 'bg-brand-green text-white' : 'text-gray-600 hover:text-brand-green hover:bg-brand-green/5'}`}>
+                            <EditableLink key={tab.id} contentKey={`am-tab-${tab.id}`} to={`#${tab.id}`} onClick={() => setActiveSection(tab.id)}
+                                className={`flex-shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${activeSection === tab.id ? 'bg-brand-green text-white' : 'text-gray-600 hover:text-brand-green hover:bg-brand-green/5'}`}
+                                defaultText={tab.label}>
                                 {tab.label}
-                            </a>
+                            </EditableLink>
                         ))}
                     </div>
                 </div>
@@ -73,27 +73,26 @@ const AboutMilletsPage = () => {
             <section id="what" className="py-24 bg-white scroll-mt-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="max-w-3xl mx-auto text-center mb-16">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Section 01</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6">What are Millets?</h2>
-                        <p className="text-lg text-gray-600 leading-relaxed">{am.whatAreMillets.definition}</p>
+                        <EditableText as="span" contentKey="am-sec1-tag" defaultText="Section 01" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="am-sec1-title" defaultText="What are Millets?" className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 block" />
+                        <EditableText as="p" contentKey="am-sec1-desc" defaultText={am.whatAreMillets.definition} className="text-lg text-gray-600 leading-relaxed block" />
                     </div>
 
                     {/* Millet Types Grid */}
                     <div className="mb-20">
-                        <h3 className="text-2xl font-extrabold text-gray-900 mb-8 text-center">Types of Millets</h3>
+                        <EditableText as="h3" contentKey="am-types-title" defaultText="Types of Millets" className="text-2xl font-extrabold text-gray-900 mb-8 text-center block" />
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                             {am.whatAreMillets.types.map((type, i) => (
                                 <div key={i} className="group relative overflow-hidden rounded-2xl hover:shadow-xl transition-all duration-300">
-                                    <img
-                                        src={imgMap[type.img] || images.millets.pearl}
-                                        alt={type.name}
+                                    <EditableImage
+                                        contentKey={`am-type-img-${i}`}
+                                        defaultSrc={imgMap[type.img] || images.millets.pearl}
                                         className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                                        loading="lazy"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent" />
                                     <div className="absolute bottom-0 left-0 right-0 p-4">
-                                        <h4 className="font-bold text-white text-sm leading-tight mb-1">{type.name}</h4>
-                                        <p className="text-gray-300 text-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300">{type.desc}</p>
+                                        <EditableText as="h4" contentKey={`am-type-name-${i}`} defaultText={type.name} className="font-bold text-white text-sm leading-tight mb-1 block" />
+                                        <EditableText as="p" contentKey={`am-type-desc-${i}`} defaultText={type.desc} className="text-gray-300 text-xs leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 block" />
                                     </div>
                                 </div>
                             ))}
@@ -102,15 +101,15 @@ const AboutMilletsPage = () => {
 
                     {/* Nutritional Profile */}
                     <div>
-                        <h3 className="text-2xl font-extrabold text-gray-900 mb-8 text-center">Nutritional Profile</h3>
+                        <EditableText as="h3" contentKey="am-nutri-title" defaultText="Nutritional Profile" className="text-2xl font-extrabold text-gray-900 mb-8 text-center block" />
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
                             {am.whatAreMillets.nutritionalProfile.map((nutrient, i) => (
                                 <div key={i} className="bg-gradient-to-b from-gray-50 to-white border border-gray-100 rounded-2xl p-6 text-center hover:border-brand-green/30 hover:shadow-md transition-all">
                                     <div className="w-12 h-12 rounded-xl bg-brand-green/10 text-brand-green flex items-center justify-center mx-auto mb-3 text-xl font-black">
                                         {nutrient.icon.charAt(0).toUpperCase()}
                                     </div>
-                                    <h4 className="font-bold text-gray-900 text-sm mb-2">{nutrient.nutrient}</h4>
-                                    <p className="text-gray-500 text-xs leading-relaxed">{nutrient.desc}</p>
+                                    <EditableText as="h4" contentKey={`am-nutri-name-${i}`} defaultText={nutrient.nutrient} className="font-bold text-gray-900 text-sm mb-2 block" />
+                                    <EditableText as="p" contentKey={`am-nutri-desc-${i}`} defaultText={nutrient.desc} className="text-gray-500 text-xs leading-relaxed block" />
                                 </div>
                             ))}
                         </div>
@@ -122,8 +121,8 @@ const AboutMilletsPage = () => {
             <section id="importance" className="py-24 bg-gray-50 scroll-mt-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Section 02</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Importance of Millets</h2>
+                        <EditableText as="span" contentKey="am-sec2-tag" defaultText="Section 02" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="am-sec2-title" defaultText="Importance of Millets" className="text-3xl md:text-4xl font-extrabold text-gray-900 block" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {[am.importance.foodSecurity, am.importance.climateResilience, am.importance.nutritionalBenefits].map((item, i) => (
@@ -136,15 +135,15 @@ const AboutMilletsPage = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />}
                                         </svg>
                                     </div>
-                                    <h3 className={`text-xl font-extrabold mb-4 ${i === 0 ? 'text-white' : 'text-gray-900'}`}>{item.title}</h3>
-                                    <p className={`mb-6 leading-relaxed ${i === 0 ? 'text-gray-200' : 'text-gray-600'}`}>{item.desc}</p>
+                                    <EditableText as="h3" contentKey={`am-imp-title-${i}`} defaultText={item.title} className={`text-xl font-extrabold mb-4 block ${i === 0 ? 'text-white' : 'text-gray-900'}`} />
+                                    <EditableText as="p" contentKey={`am-imp-desc-${i}`} defaultText={item.desc} className={`mb-6 leading-relaxed block ${i === 0 ? 'text-gray-200' : 'text-gray-600'}`} />
                                     <ul className="space-y-2">
                                         {item.points.map((point, j) => (
                                             <li key={j} className="flex items-start gap-2">
                                                 <div className={`w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5 ${i === 0 ? 'bg-white/20' : 'bg-brand-green/10 text-brand-green'}`}>
                                                     <svg className={`w-3 h-3 ${i === 0 ? 'text-white' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" /></svg>
                                                 </div>
-                                                <span className={`text-sm ${i === 0 ? 'text-gray-200' : 'text-gray-600'}`}>{point}</span>
+                                                <EditableText as="span" contentKey={`am-imp-point-${i}-${j}`} defaultText={point} className={`text-sm block ${i === 0 ? 'text-gray-200' : 'text-gray-600'}`} />
                                             </li>
                                         ))}
                                     </ul>
@@ -159,9 +158,9 @@ const AboutMilletsPage = () => {
             <section id="value-chain" className="py-24 bg-white scroll-mt-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Section 03</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Millet Value Chain</h2>
-                        <p className="text-gray-600 leading-relaxed">{am.valueChain.intro}</p>
+                        <EditableText as="span" contentKey="am-sec3-tag" defaultText="Section 03" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="am-sec3-title" defaultText="Millet Value Chain" className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 block" />
+                        <EditableText as="p" contentKey="am-sec3-desc" defaultText={am.valueChain.intro} className="text-gray-600 leading-relaxed block" />
                     </div>
                     <div className="relative">
                         {/* Connector line */}
@@ -172,11 +171,11 @@ const AboutMilletsPage = () => {
                                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-brand-green to-brand-dark flex items-center justify-center text-white font-black text-lg mb-4 shadow-lg group-hover:scale-110 transition-transform">
                                         {stage.stage}
                                     </div>
-                                    <h4 className="font-bold text-gray-900 text-sm mb-2 leading-tight">{stage.title}</h4>
-                                    <p className="text-gray-500 text-xs leading-relaxed mb-3 hidden lg:block">{stage.desc}</p>
+                                    <EditableText as="h4" contentKey={`am-vc-title-${i}`} defaultText={stage.title} className="font-bold text-gray-900 text-sm mb-2 leading-tight block" />
+                                    <EditableText as="p" contentKey={`am-vc-desc-${i}`} defaultText={stage.desc} className="text-gray-500 text-xs leading-relaxed mb-3 hidden lg:block block" />
                                     <div className="flex flex-wrap gap-1 justify-center">
                                         {stage.actors.slice(0, 2).map((actor, j) => (
-                                            <span key={j} className="px-2 py-0.5 rounded-full text-xs bg-brand-green/10 text-brand-green font-medium">{actor}</span>
+                                            <EditableText as="span" key={j} contentKey={`am-vc-actor-${i}-${j}`} defaultText={actor} className="px-2 py-0.5 rounded-full text-xs bg-brand-green/10 text-brand-green font-medium block" />
                                         ))}
                                     </div>
                                 </div>
@@ -190,9 +189,9 @@ const AboutMilletsPage = () => {
             <section id="products" className="py-24 bg-gray-50 scroll-mt-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Section 04</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Millet Products</h2>
-                        <p className="text-gray-600">{am.products.intro}</p>
+                        <EditableText as="span" contentKey="am-sec4-tag" defaultText="Section 04" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="am-sec4-title" defaultText="Millet Products" className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 block" />
+                        <EditableText as="p" contentKey="am-sec4-desc" defaultText={am.products.intro} className="text-gray-600 block" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Traditional */}
@@ -204,8 +203,8 @@ const AboutMilletsPage = () => {
                             <div className="space-y-3">
                                 {am.products.traditional.map((p, i) => (
                                     <div key={i} className="bg-white border border-gray-100 rounded-xl p-5 hover:border-brand-orange/30 hover:shadow-sm transition-all">
-                                        <h4 className="font-bold text-gray-900 mb-1">{p.name}</h4>
-                                        <p className="text-gray-500 text-sm">{p.desc}</p>
+                                        <EditableText as="h4" contentKey={`am-prod-trad-name-${i}`} defaultText={p.name} className="font-bold text-gray-900 mb-1 block" />
+                                        <EditableText as="p" contentKey={`am-prod-trad-desc-${i}`} defaultText={p.desc} className="text-gray-500 text-sm block" />
                                     </div>
                                 ))}
                             </div>
@@ -219,8 +218,8 @@ const AboutMilletsPage = () => {
                             <div className="space-y-3">
                                 {am.products.modern.map((p, i) => (
                                     <div key={i} className="bg-white border border-gray-100 rounded-xl p-5 hover:border-brand-green/30 hover:shadow-sm transition-all">
-                                        <h4 className="font-bold text-gray-900 mb-1">{p.name}</h4>
-                                        <p className="text-gray-500 text-sm">{p.desc}</p>
+                                        <EditableText as="h4" contentKey={`am-prod-mod-name-${i}`} defaultText={p.name} className="font-bold text-gray-900 mb-1 block" />
+                                        <EditableText as="p" contentKey={`am-prod-mod-desc-${i}`} defaultText={p.desc} className="text-gray-500 text-sm block" />
                                     </div>
                                 ))}
                             </div>
@@ -233,8 +232,8 @@ const AboutMilletsPage = () => {
             <section id="policies" className="py-24 bg-white scroll-mt-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Section 05</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Policies & Initiatives</h2>
+                        <EditableText as="span" contentKey="am-sec5-tag" defaultText="Section 05" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="am-sec5-title" defaultText="Policies & Initiatives" className="text-3xl md:text-4xl font-extrabold text-gray-900 block" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         <div>
@@ -245,11 +244,11 @@ const AboutMilletsPage = () => {
                                 {am.policies.national.map((pol, i) => (
                                     <div key={i} className="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:border-brand-green/30 hover:shadow-md transition-all">
                                         <div className="flex items-start justify-between gap-4 mb-2">
-                                            <h4 className="font-bold text-gray-900 text-sm leading-snug flex-1">{pol.title}</h4>
-                                            <span className="text-xs text-brand-orange font-semibold flex-shrink-0">{pol.year}</span>
+                                            <EditableText as="h4" contentKey={`am-pol-nat-title-${i}`} defaultText={pol.title} className="font-bold text-gray-900 text-sm leading-snug flex-1 block" />
+                                            <EditableText as="span" contentKey={`am-pol-nat-year-${i}`} defaultText={pol.year} className="text-xs text-brand-orange font-semibold flex-shrink-0 block" />
                                         </div>
-                                        <p className="text-xs font-semibold text-brand-green mb-2">{pol.body}</p>
-                                        <p className="text-gray-600 text-sm leading-relaxed">{pol.desc}</p>
+                                        <EditableText as="p" contentKey={`am-pol-nat-body-${i}`} defaultText={pol.body} className="text-xs font-semibold text-brand-green mb-2 block" />
+                                        <EditableText as="p" contentKey={`am-pol-nat-desc-${i}`} defaultText={pol.desc} className="text-gray-600 text-sm leading-relaxed block" />
                                     </div>
                                 ))}
                             </div>
@@ -261,9 +260,9 @@ const AboutMilletsPage = () => {
                             <div className="space-y-4">
                                 {am.policies.global.map((pol, i) => (
                                     <div key={i} className="bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:border-brand-orange/30 hover:shadow-md transition-all">
-                                        <h4 className="font-bold text-gray-900 text-sm leading-snug mb-2">{pol.title}</h4>
-                                        <p className="text-xs font-semibold text-brand-orange mb-2">{pol.body}</p>
-                                        <p className="text-gray-600 text-sm leading-relaxed">{pol.desc}</p>
+                                        <EditableText as="h4" contentKey={`am-pol-glob-title-${i}`} defaultText={pol.title} className="font-bold text-gray-900 text-sm leading-snug mb-2 block" />
+                                        <EditableText as="p" contentKey={`am-pol-glob-body-${i}`} defaultText={pol.body} className="text-xs font-semibold text-brand-orange mb-2 block" />
+                                        <EditableText as="p" contentKey={`am-pol-glob-desc-${i}`} defaultText={pol.desc} className="text-gray-600 text-sm leading-relaxed block" />
                                     </div>
                                 ))}
                             </div>
@@ -276,8 +275,8 @@ const AboutMilletsPage = () => {
             <section id="knowledge" className="py-24 bg-gradient-to-b from-gray-50 to-white scroll-mt-40">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-16">
-                        <span className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block">Section 06</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">Knowledge Resources</h2>
+                        <EditableText as="span" contentKey="am-sec6-tag" defaultText="Section 06" className="text-sm font-bold uppercase tracking-widest text-brand-green mb-3 block" />
+                        <EditableText as="h2" contentKey="am-sec6-title" defaultText="Knowledge Resources" className="text-3xl md:text-4xl font-extrabold text-gray-900 block" />
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                         {/* Articles */}
@@ -287,10 +286,10 @@ const AboutMilletsPage = () => {
                                 Articles
                             </h3>
                             {am.knowledge.articles.map((item, i) => (
-                                <a key={i} href={item.url} className="block bg-white border border-gray-100 rounded-xl p-5 mb-3 hover:border-brand-green/30 hover:shadow-sm transition-all group">
-                                    <span className="text-xs font-bold text-brand-green mb-2 block">{item.source}</span>
-                                    <h4 className="font-bold text-gray-900 text-sm leading-snug group-hover:text-brand-green transition-colors">{item.title}</h4>
-                                </a>
+                                <EditableLink key={i} contentKey={`am-know-art-link-${i}`} to={item.url} defaultText={item.title} className="block bg-white border border-gray-100 rounded-xl p-5 mb-3 hover:border-brand-green/30 hover:shadow-sm transition-all group">
+                                    <EditableText as="span" contentKey={`am-know-art-src-${i}`} defaultText={item.source} className="text-xs font-bold text-brand-green mb-2 block block" />
+                                    <EditableText as="h4" contentKey={`am-know-art-title-${i}`} defaultText={item.title} className="font-bold text-gray-900 text-sm leading-snug group-hover:text-brand-green transition-colors block" />
+                                </EditableLink>
                             ))}
                         </div>
                         {/* Reports */}
@@ -300,10 +299,10 @@ const AboutMilletsPage = () => {
                                 Reports
                             </h3>
                             {am.knowledge.reports.map((item, i) => (
-                                <a key={i} href={item.url} className="block bg-white border border-gray-100 rounded-xl p-5 mb-3 hover:border-brand-orange/30 hover:shadow-sm transition-all group">
-                                    <span className="text-xs font-bold text-brand-orange mb-2 block">{item.source}</span>
-                                    <h4 className="font-bold text-gray-900 text-sm leading-snug group-hover:text-brand-orange transition-colors">{item.title}</h4>
-                                </a>
+                                <EditableLink key={i} contentKey={`am-know-rep-link-${i}`} to={item.url} defaultText={item.title} className="block bg-white border border-gray-100 rounded-xl p-5 mb-3 hover:border-brand-orange/30 hover:shadow-sm transition-all group">
+                                    <EditableText as="span" contentKey={`am-know-rep-src-${i}`} defaultText={item.source} className="text-xs font-bold text-brand-orange mb-2 block block" />
+                                    <EditableText as="h4" contentKey={`am-know-rep-title-${i}`} defaultText={item.title} className="font-bold text-gray-900 text-sm leading-snug group-hover:text-brand-orange transition-colors block" />
+                                </EditableLink>
                             ))}
                         </div>
                         {/* External Links */}
@@ -313,16 +312,16 @@ const AboutMilletsPage = () => {
                                 External Links
                             </h3>
                             {am.knowledge.externalLinks.map((link, i) => (
-                                <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
-                                    className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-5 mb-3 hover:border-brand-green/30 hover:shadow-sm transition-all group">
+                                <EditableLink key={i} contentKey={`am-know-ext-link-${i}`} to={link.url} target="_blank" rel="noopener noreferrer"
+                                    defaultText={link.name} className="flex items-center gap-3 bg-white border border-gray-100 rounded-xl p-5 mb-3 hover:border-brand-green/30 hover:shadow-sm transition-all group">
                                     <div className="w-8 h-8 rounded-lg bg-brand-green/10 text-brand-green flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green group-hover:text-white transition-all">
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                                     </div>
                                     <div>
-                                        <p className="font-bold text-gray-900 text-sm group-hover:text-brand-green transition-colors">{link.name}</p>
-                                        <p className="text-gray-500 text-xs">{link.desc}</p>
+                                        <EditableText as="p" contentKey={`am-know-ext-name-${i}`} defaultText={link.name} className="font-bold text-gray-900 text-sm group-hover:text-brand-green transition-colors block" />
+                                        <EditableText as="p" contentKey={`am-know-ext-desc-${i}`} defaultText={link.desc} className="text-gray-500 text-xs block" />
                                     </div>
-                                </a>
+                                </EditableLink>
                             ))}
                         </div>
                     </div>
@@ -334,7 +333,7 @@ const AboutMilletsPage = () => {
                 <div className="flex overflow-hidden">
                     {Object.values(images.millets).map((img, idx) => (
                         <div key={idx} className="flex-shrink-0 w-1/4 md:w-1/8 h-20 md:h-28 relative group" style={{ width: '12.5%' }}>
-                            <img src={img} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                            <EditableImage contentKey={`am-strip-img-${idx}`} defaultSrc={img} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                             <div className="absolute inset-0 bg-brand-green/20 group-hover:bg-transparent transition-colors duration-500" />
                         </div>
                     ))}

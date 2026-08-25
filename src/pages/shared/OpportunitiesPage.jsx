@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import EditableText from '../../components/EditableText';
+import EditableImage from '../../components/EditableImage';
+import EditableLink from '../../components/EditableLink';
 import { siteContent } from '../../data/siteContent';
 import { images } from '../../data/imageMap';
 
@@ -21,16 +24,14 @@ const OpportunitiesPage = () => {
             {/* Hero */}
             <div className="relative min-h-[45vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
-                    <img src={images.about.building} alt="Opportunities" className="w-full h-full object-cover" loading="eager" />
+                    <EditableImage contentKey="opp-hero-bg" defaultSrc={images.about.building} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-dark/95 via-brand-dark/80 to-transparent" />
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
                     <div className="max-w-3xl">
-                        <span className="text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange">Join Us</span>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-tight">
-                            Opportunities
-                        </h1>
-                        <p className="text-xl text-gray-200 font-light leading-relaxed">{opp.intro}</p>
+                        <EditableText as="span" contentKey="opp-hero-subtitle" defaultText="Join Us" className="text-sm font-bold uppercase tracking-widest mb-4 block text-brand-orange" />
+                        <EditableText as="h1" contentKey="opp-hero-title" defaultText="Opportunities" className="block text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-white leading-tight" />
+                        <EditableText as="p" contentKey="opp-hero-intro" defaultText={opp.intro} className="block text-xl text-gray-200 font-light leading-relaxed" />
                     </div>
                 </div>
             </div>
@@ -57,31 +58,29 @@ const OpportunitiesPage = () => {
                     {activeTab === 'careers' && (
                         <div>
                             <div className="mb-10">
-                                <h2 className="text-3xl font-extrabold text-gray-900 mb-3">Careers</h2>
-                                <p className="text-gray-600 text-lg">{opp.careers.intro}</p>
+                                <EditableText as="h2" contentKey="opp-careers-title" defaultText="Careers" className="block text-3xl font-extrabold text-gray-900 mb-3" />
+                                <EditableText as="p" contentKey="opp-careers-intro" defaultText={opp.careers.intro} className="block text-gray-600 text-lg" />
                                 <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full bg-brand-orange/10 text-brand-orange border border-brand-orange/20">
                                     <span className="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
-                                    <span className="font-bold text-sm">{opp.careers.status}</span>
+                                    <EditableText as="span" contentKey="opp-careers-status" defaultText={opp.careers.status} className="font-bold text-sm" />
                                 </div>
                             </div>
                             <div className="space-y-4">
                                 {opp.careers.roles.map((role, i) => (
                                     <div key={i} className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 bg-gray-50 border border-gray-200 rounded-2xl hover:border-brand-green/40 hover:shadow-md transition-all">
                                         <div>
-                                            <h3 className="text-xl font-bold text-gray-900 mb-2">{role.title}</h3>
+                                            <EditableText as="h3" contentKey={`opp-careers-role-title-${i}`} defaultText={role.title} className="block text-xl font-bold text-gray-900 mb-2" />
                                             <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
-                                                <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-green/10 text-brand-green">{role.type}</span>
+                                                <EditableText as="span" contentKey={`opp-careers-role-type-${i}`} defaultText={role.type} className="px-3 py-1 rounded-full text-xs font-bold bg-brand-green/10 text-brand-green" />
                                                 <span className="flex items-center gap-1">
                                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /></svg>
-                                                    {role.location}
+                                                    <EditableText as="span" contentKey={`opp-careers-role-loc-${i}`} defaultText={role.location} className="" />
                                                 </span>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-orange/10 text-brand-orange">{role.status}</span>
-                                            <Link to="/contact" className="inline-flex items-center px-5 py-2.5 rounded-xl font-bold text-sm bg-brand-green text-white hover:bg-brand-dark transition-all">
-                                                Express Interest
-                                            </Link>
+                                            <EditableText as="span" contentKey={`opp-careers-role-status-${i}`} defaultText={role.status} className="px-3 py-1 rounded-full text-xs font-bold bg-brand-orange/10 text-brand-orange" />
+                                            <EditableLink contentKey={`opp-careers-role-link-${i}`} to="/contact" defaultText="Express Interest" className="inline-flex items-center px-5 py-2.5 rounded-xl font-bold text-sm bg-brand-green text-white hover:bg-brand-dark transition-all" />
                                         </div>
                                     </div>
                                 ))}
@@ -92,7 +91,7 @@ const OpportunitiesPage = () => {
                     {/* Notices */}
                     {activeTab === 'notices' && (
                         <div>
-                            <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Notices</h2>
+                            <EditableText as="h2" contentKey="opp-notices-title" defaultText="Notices" className="block text-3xl font-extrabold text-gray-900 mb-8" />
                             <div className="space-y-4">
                                 {opp.notices.map((item, i) => (
                                     <div key={i} className="p-6 bg-gray-50 border border-gray-200 rounded-2xl hover:border-brand-green/30 hover:shadow-md transition-all">
@@ -102,11 +101,11 @@ const OpportunitiesPage = () => {
                                             </div>
                                             <div className="flex-1">
                                                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600">{item.type}</span>
-                                                    <span className="text-sm text-gray-400">{item.date}</span>
+                                                    <EditableText as="span" contentKey={`opp-notices-type-${i}`} defaultText={item.type} className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600" />
+                                                    <EditableText as="span" contentKey={`opp-notices-date-${i}`} defaultText={item.date} className="text-sm text-gray-400" />
                                                 </div>
-                                                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                                                <p className="text-gray-600 text-sm">{item.detail}</p>
+                                                <EditableText as="h3" contentKey={`opp-notices-item-title-${i}`} defaultText={item.title} className="block text-lg font-bold text-gray-900 mb-2" />
+                                                <EditableText as="p" contentKey={`opp-notices-item-detail-${i}`} defaultText={item.detail} className="block text-gray-600 text-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +117,7 @@ const OpportunitiesPage = () => {
                     {/* Tenders */}
                     {activeTab === 'tenders' && (
                         <div>
-                            <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Tenders</h2>
+                            <EditableText as="h2" contentKey="opp-tenders-title" defaultText="Tenders" className="block text-3xl font-extrabold text-gray-900 mb-8" />
                             <div className="space-y-4">
                                 {opp.tenders.map((item, i) => (
                                     <div key={i} className="p-6 bg-gray-50 border border-gray-200 rounded-2xl hover:border-brand-green/30 hover:shadow-md transition-all">
@@ -128,12 +127,12 @@ const OpportunitiesPage = () => {
                                             </div>
                                             <div className="flex-1">
                                                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-orange/10 text-brand-orange">{item.type}</span>
-                                                    <span className="text-sm text-gray-400">{item.date}</span>
-                                                    {item.amount !== 'TBD' && <span className="text-sm font-semibold text-brand-green">{item.amount}</span>}
+                                                    <EditableText as="span" contentKey={`opp-tenders-type-${i}`} defaultText={item.type} className="px-3 py-1 rounded-full text-xs font-bold bg-brand-orange/10 text-brand-orange" />
+                                                    <EditableText as="span" contentKey={`opp-tenders-date-${i}`} defaultText={item.date} className="text-sm text-gray-400" />
+                                                    {item.amount !== 'TBD' && <EditableText as="span" contentKey={`opp-tenders-amount-${i}`} defaultText={item.amount} className="text-sm font-semibold text-brand-green" />}
                                                 </div>
-                                                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                                                <p className="text-gray-600 text-sm">{item.detail}</p>
+                                                <EditableText as="h3" contentKey={`opp-tenders-item-title-${i}`} defaultText={item.title} className="block text-lg font-bold text-gray-900 mb-2" />
+                                                <EditableText as="p" contentKey={`opp-tenders-item-detail-${i}`} defaultText={item.detail} className="block text-gray-600 text-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +144,7 @@ const OpportunitiesPage = () => {
                     {/* Procurement */}
                     {activeTab === 'procurement' && (
                         <div>
-                            <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Procurement</h2>
+                            <EditableText as="h2" contentKey="opp-procurement-title" defaultText="Procurement" className="block text-3xl font-extrabold text-gray-900 mb-8" />
                             <div className="space-y-4">
                                 {opp.procurement.map((item, i) => (
                                     <div key={i} className="p-6 bg-gray-50 border border-gray-200 rounded-2xl hover:border-brand-green/30 hover:shadow-md transition-all">
@@ -155,11 +154,11 @@ const OpportunitiesPage = () => {
                                             </div>
                                             <div className="flex-1">
                                                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-brand-green/10 text-brand-green">{item.category}</span>
-                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-600">{item.status}</span>
+                                                    <EditableText as="span" contentKey={`opp-proc-cat-${i}`} defaultText={item.category} className="px-3 py-1 rounded-full text-xs font-bold bg-brand-green/10 text-brand-green" />
+                                                    <EditableText as="span" contentKey={`opp-proc-status-${i}`} defaultText={item.status} className="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-600" />
                                                 </div>
-                                                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                                                <p className="text-gray-600 text-sm">{item.detail}</p>
+                                                <EditableText as="h3" contentKey={`opp-proc-item-title-${i}`} defaultText={item.title} className="block text-lg font-bold text-gray-900 mb-2" />
+                                                <EditableText as="p" contentKey={`opp-proc-item-detail-${i}`} defaultText={item.detail} className="block text-gray-600 text-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +170,7 @@ const OpportunitiesPage = () => {
                     {/* Circulars */}
                     {activeTab === 'circulars' && (
                         <div>
-                            <h2 className="text-3xl font-extrabold text-gray-900 mb-8">Circulars</h2>
+                            <EditableText as="h2" contentKey="opp-circulars-title" defaultText="Circulars" className="block text-3xl font-extrabold text-gray-900 mb-8" />
                             <div className="space-y-4">
                                 {opp.circulars.map((item, i) => (
                                     <div key={i} className="p-6 bg-gray-50 border border-gray-200 rounded-2xl hover:border-brand-green/30 hover:shadow-md transition-all">
@@ -181,11 +180,11 @@ const OpportunitiesPage = () => {
                                             </div>
                                             <div>
                                                 <div className="flex flex-wrap items-center gap-3 mb-2">
-                                                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600">{item.type}</span>
-                                                    <span className="text-sm text-gray-400">{item.date}</span>
+                                                    <EditableText as="span" contentKey={`opp-circ-type-${i}`} defaultText={item.type} className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600" />
+                                                    <EditableText as="span" contentKey={`opp-circ-date-${i}`} defaultText={item.date} className="text-sm text-gray-400" />
                                                 </div>
-                                                <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
-                                                <p className="text-gray-600 text-sm">{item.detail}</p>
+                                                <EditableText as="h3" contentKey={`opp-circ-item-title-${i}`} defaultText={item.title} className="block text-lg font-bold text-gray-900 mb-2" />
+                                                <EditableText as="p" contentKey={`opp-circ-item-detail-${i}`} defaultText={item.detail} className="block text-gray-600 text-sm" />
                                             </div>
                                         </div>
                                     </div>
@@ -199,11 +198,9 @@ const OpportunitiesPage = () => {
             {/* CTA */}
             <div className="py-16 bg-gradient-to-r from-brand-green to-brand-dark">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-3xl font-extrabold text-white mb-4">Have a Query?</h2>
-                    <p className="text-gray-200 mb-8">For any opportunities-related questions, reach out to our team directly.</p>
-                    <Link to="/contact" className="inline-flex items-center px-8 py-4 rounded-full bg-white text-brand-green font-bold hover:bg-brand-dark hover:text-white transition-all">
-                        Contact Us
-                    </Link>
+                    <EditableText as="h2" contentKey="opp-cta-title" defaultText="Have a Query?" className="block text-3xl font-extrabold text-white mb-4" />
+                    <EditableText as="p" contentKey="opp-cta-desc" defaultText="For any opportunities-related questions, reach out to our team directly." className="block text-gray-200 mb-8" />
+                    <EditableLink contentKey="opp-cta-link" to="/contact" defaultText="Contact Us" className="inline-flex items-center px-8 py-4 rounded-full bg-white text-brand-green font-bold hover:bg-brand-dark hover:text-white transition-all" />
                 </div>
             </div>
         </div>
@@ -211,3 +208,4 @@ const OpportunitiesPage = () => {
 };
 
 export default OpportunitiesPage;
+
